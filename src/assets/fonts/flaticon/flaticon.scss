@@ -1,0 +1,89 @@
+$flaticon-font: "flaticon";
+
+@font-face {
+    font-family: $flaticon-font;
+    src: url("./flaticon.ttf?7150d66c443ec5fec5ec59312e398b2e") format("truetype"),
+url("./flaticon.woff?7150d66c443ec5fec5ec59312e398b2e") format("woff"),
+url("./flaticon.woff2?7150d66c443ec5fec5ec59312e398b2e") format("woff2"),
+url("./flaticon.eot?7150d66c443ec5fec5ec59312e398b2e#iefix") format("embedded-opentype"),
+url("./flaticon.svg?7150d66c443ec5fec5ec59312e398b2e#flaticon") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$flaticon-map: (
+    "placeholder": "\f101",
+    "search": "\f102",
+    "magnifying-glass": "\f103",
+    "phone": "\f104",
+    "envelope": "\f105",
+    "world": "\f106",
+    "worldwide": "\f107",
+    "youtube": "\f108",
+    "twitter": "\f109",
+    "facebook": "\f10a",
+    "vimeo": "\f10b",
+    "plus": "\f10c",
+    "antenna": "\f10d",
+    "vector2": "\f10e",
+    "map-marker": "\f10f",
+    "vector1": "\f110",
+);
+
+.flaticon-placeholder:before {
+    content: map-get($flaticon-map, "placeholder");
+}
+.flaticon-search:before {
+    content: map-get($flaticon-map, "search");
+}
+.flaticon-magnifying-glass:before {
+    content: map-get($flaticon-map, "magnifying-glass");
+}
+.flaticon-phone:before {
+    content: map-get($flaticon-map, "phone");
+}
+.flaticon-envelope:before {
+    content: map-get($flaticon-map, "envelope");
+}
+.flaticon-world:before {
+    content: map-get($flaticon-map, "world");
+}
+.flaticon-worldwide:before {
+    content: map-get($flaticon-map, "worldwide");
+}
+.flaticon-youtube:before {
+    content: map-get($flaticon-map, "youtube");
+}
+.flaticon-twitter:before {
+    content: map-get($flaticon-map, "twitter");
+}
+.flaticon-facebook:before {
+    content: map-get($flaticon-map, "facebook");
+}
+.flaticon-vimeo:before {
+    content: map-get($flaticon-map, "vimeo");
+}
+.flaticon-plus:before {
+    content: map-get($flaticon-map, "plus");
+}
+.flaticon-antenna:before {
+    content: map-get($flaticon-map, "antenna");
+}
+.flaticon-vector2:before {
+    content: map-get($flaticon-map, "vector2");
+}
+.flaticon-map-marker:before {
+    content: map-get($flaticon-map, "map-marker");
+}
+.flaticon-vector1:before {
+    content: map-get($flaticon-map, "vector1");
+}

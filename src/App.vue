@@ -1,28 +1,44 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+	<div>
+		<!-- <Demand /> -->
+		<Programs />
+	</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import Demand from './views/DemandSkills';
+import Programs from './views/Programs';
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+	name: 'App',
+	components: {
+		// Demand,
+		Programs,
+	},
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import url(./assets/fonts/flaticon/flaticon.css);
+.bg {
+	background: #e5e5e5;
+	min-height: 100vh;
+}
+.card--title {
+	color: #00466e;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 1;
+}
+.card--subtitle {
+	color: #00b1bc !important;
+	font-size: 13px;
+	font-weight: 700;
+	padding-bottom: 5px;
+}
+.subtitle-1 {
+	color: #575f6e;
+	font-size: 12px;
+	font-weight: 400;
 }
 </style>

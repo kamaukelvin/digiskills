@@ -1,0 +1,112 @@
+<template>
+	<div>
+		<ul class="skills">
+			<li><h1>Engineering</h1></li>
+			<li>
+				<ul>
+					<li><h5>UI/UX Design</h5></li>
+					<li><h4>Interior Design</h4></li>
+					<li><h5>Research</h5></li>
+				</ul>
+			</li>
+			<li>
+				<ul>
+					<li><h4 id="h4--bold">Marketing</h4></li>
+					<li><h5 id="h5--light">System Analysis</h5></li>
+					<li><h4>Digital Marketing</h4></li>
+				</ul>
+			</li>
+			<li>
+				<ul>
+					<li><h4>Data Science</h4></li>
+					<li><h5>Data Analysis</h5></li>
+					<li><h4>Data Engineering</h4></li>
+				</ul>
+			</li>
+			<li>
+				<ul>
+					<li><h4>Physics</h4></li>
+					<li><h3>Video Production</h3></li>
+					<li><h5>Radiology</h5></li>
+				</ul>
+			</li>
+			<li>
+				<ul>
+					<li><h3>Physiology</h3></li>
+					<li><h5>Animation</h5></li>
+					<li><h4>Geography</h4></li>
+				</ul>
+			</li>
+			<li>
+				<ul>
+					<li><h5>Automotive Engineering</h5></li>
+					<li><h4>Online Marketing</h4></li>
+					<li><h5>Dentistry</h5></li>
+				</ul>
+			</li>
+			<li>
+				<h2>Marine Biology</h2>
+			</li>
+		</ul>
+	</div>
+</template>
+<script>
+export default {
+	name: 'Skills',
+};
+</script>
+<style scoped>
+ul {
+	margin-bottom: 0;
+}
+
+ul li {
+	list-style-type: none;
+	text-transform: uppercase;
+	text-align: center;
+	text-transform: Capitalize;
+}
+.skills ul li,
+h1,
+h2,
+h3,
+h4,
+h5 {
+	display: inline;
+	margin-bottom: 0;
+}
+
+.skills h1 {
+	color: #00b1bc;
+	font-size: 35px;
+	font-weight: 700;
+}
+.skills h2 {
+	color: #00b1bc;
+	font-size: 24px;
+	font-weight: 700;
+}
+.skills h3 {
+	color: #00b1bc;
+	font-size: 20px;
+	font-weight: 700;
+}
+.skills h4 {
+	color: #06685c;
+	font-size: 18px;
+}
+#h4--bold {
+	color: #00b1bc;
+	font-size: 18px;
+	font-weight: 700;
+}
+.skills h5 {
+	color: #575f6e;
+	font-size: 12px;
+	padding: 0 0.6em;
+}
+#h5--light {
+	color: #0baa97;
+	font-size: 13px;
+}
+</style>
