@@ -10,8 +10,8 @@
 			</div>
 			<div>
 				<ul class="nav__links">
-					<li>Home</li>
-					<li>Programs</li>
+					<router-link tag="li" to="/">Home</router-link>
+					<router-link tag="li" to="/programs">Programs</router-link>
 					<li>Blueprint</li>
 					<li>Resources</li>
 				</ul>
@@ -48,6 +48,7 @@ ul li {
 	text-transform: uppercase;
 	font-size: 14px;
 	padding: 0 1em;
+	cursor: pointer;
 }
 .navbar__wrapper {
 	height: 64px;

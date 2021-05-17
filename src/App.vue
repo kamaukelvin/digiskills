@@ -1,20 +1,12 @@
 <template>
 	<div>
-		<!-- <Demand /> -->
-		<Programs />
+		<router-view />
 	</div>
 </template>
 
 <script>
-// import Demand from './views/DemandSkills';
-import Programs from './views/Programs';
-
 export default {
 	name: 'App',
-	components: {
-		// Demand,
-		Programs,
-	},
 };
 </script>
 

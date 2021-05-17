@@ -65,7 +65,7 @@ import Footer from '../components/Footer';
 import Map from '../components/Map';
 import Skills from '../components/Skills';
 export default {
-	name: 'DemandSkills',
+	name: 'Home',
 	components: {
 		Navbar,
 		Partners,
