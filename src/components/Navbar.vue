@@ -12,8 +12,8 @@
 				<ul class="nav__links">
 					<router-link tag="li" to="/">Home</router-link>
 					<router-link tag="li" to="/programs">Programs</router-link>
-					<li>Blueprint</li>
-					<li>Resources</li>
+					<router-link tag="li" to="/blueprints">Blueprint</router-link>
+					<router-link tag="li" to="/resources">Resources</router-link>
 				</ul>
 			</div>
 			<div class="nav__icons">
