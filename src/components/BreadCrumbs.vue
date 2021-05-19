@@ -1,7 +1,5 @@
 <template>
-	<div class="featured--header">
-		<v-breadcrumbs :items="items" divider="/" class="float-left"></v-breadcrumbs>
-	</div>
+	<v-breadcrumbs :items="items" divider="/" class=""></v-breadcrumbs>
 </template>
 <script>
 export default {

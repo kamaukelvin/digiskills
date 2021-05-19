@@ -4,6 +4,8 @@ import Home from '../views/Home.vue';
 import Programs from '../views/Programs.vue';
 import BluePrints from '../views/BluePrints.vue';
 import Resources from '../views/Resources.vue';
+import ResourcesArticle from '../views/ResourcesArticle.vue';
+import ProgramDetails from '../views/ProgramDetails.vue';
 
 Vue.use(VueRouter);
 
@@ -15,8 +17,13 @@ const routes = [
 	},
 	{
 		path: '/programs',
-		name: 'programs',
+		name: 'program',
 		component: Programs,
+	},
+	{
+		path: '/programs/:id',
+		name: 'programDetails',
+		component: ProgramDetails,
 	},
 	{
 		path: '/blueprints',
@@ -27,6 +34,11 @@ const routes = [
 		path: '/resources',
 		name: 'resources',
 		component: Resources,
+	},
+	{
+		path: '/resources/:id',
+		name: 'article',
+		component: ResourcesArticle,
 	},
 
 	// redirect incase user types navigates to a wrong path route

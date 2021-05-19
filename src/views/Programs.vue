@@ -13,9 +13,7 @@
 				</div>
 			</div>
 			<carousel :items="3" :dots="false" class="mx-auto">
-				<FeaturedCard />
-				<FeaturedCard />
-				<FeaturedCard />
+				<FeaturedCard v-for="(item, i) in 5" :key="i" />
 			</carousel>
 			<section>
 				<div class="all--programs--header">
@@ -24,10 +22,7 @@
 						Sort by:
 					</div>
 				</div>
-				<ProgramCard />
-				<ProgramCard />
-				<ProgramCard />
-				<ProgramCard />
+				<ProgramCard v-for="(item, i) in 5" :key="i" />
 				<div class="d-flex justify-content-center align-items-center my-4">
 					<Button title="Show more" />
 				</div>

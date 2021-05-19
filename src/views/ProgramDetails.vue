@@ -1,0 +1,82 @@
+<template>
+	<div class="bg">
+		<Navbar />
+		<div class="program--banner">
+			<div class="profile">
+				<img src="https://picsum.photos/id/11/500/300" class="profile--picture" />
+			</div>
+		</div>
+		<div class="container">
+			<TopCard />
+			<About />
+			<Tabs />
+			<section class="">
+				<h3 class="title my-5">Awards and Recognition</h3>
+				<carousel :items="3" :dots="false" class="">
+					<AwardsCard v-for="(item, i) in 5" :key="i" />
+				</carousel>
+			</section>
+			<section class="">
+				<h3 class="title my-5">Related Programs</h3>
+				<ProgramCard v-for="(item, i) in 5" :key="i" />
+				<div class="d-flex justify-content-center align-items-center my-4">
+					<Button title="Show more" />
+				</div>
+			</section>
+		</div>
+		<Footer />
+	</div>
+</template>
+
+<script>
+import carousel from 'vue-owl-carousel';
+import TopCard from '../components/TopCard';
+import Navbar from '../components/Navbar';
+import About from '../components/About';
+import Tabs from '../components/Tabs';
+import AwardsCard from '../components/AwardsCard';
+import ProgramCard from '../components/ProgramCard';
+import Button from '../components/Button';
+import Footer from '../components/Footer';
+
+export default {
+	name: 'ProgramDetails',
+	components: {
+		TopCard,
+		Navbar,
+		About,
+		Tabs,
+		AwardsCard,
+		carousel,
+		ProgramCard,
+		Button,
+		Footer,
+	},
+};
+</script>
+<style scoped>
+.program--banner {
+	background: url('../assets/images/profile-banner.png');
+	min-height: 200px;
+	background-position: center;
+	position: relative;
+}
+.profile {
+	position: absolute;
+	height: 130px;
+	width: 130px;
+	background: #fff;
+	border-radius: 50%;
+	left: 180px;
+	bottom: -75px;
+	z-index: 100;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.profile--picture {
+	border-radius: 50%;
+	height: 90px;
+	width: 90px;
+}
+</style>

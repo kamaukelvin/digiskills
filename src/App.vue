@@ -16,6 +16,11 @@ export default {
 	background: #e5e5e5;
 	min-height: 100vh;
 }
+.title {
+	color: #000;
+	font-weight: 700;
+	font-size: 14px;
+}
 .card--title {
 	color: #00466e;
 	font-size: 16px;

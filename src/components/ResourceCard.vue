@@ -1,22 +1,24 @@
 <template>
-	<v-card :loading="loading" class="my-5 resource--card" elevation="0">
-		<v-card-title class="card--title"
-			>New Trends in UX 2021: What the UI/UX revolution means for designers</v-card-title
-		>
-		<v-card-subtitle class="card--subtitle">Barbara Kimosop - University of Nairobi</v-card-subtitle>
+	<router-link to="/resources/1">
+		<v-card :loading="loading" class="my-5 resource--card" elevation="0">
+			<v-card-title class="card--title"
+				>New Trends in UX 2021: What the UI/UX revolution means for designers</v-card-title
+			>
+			<v-card-subtitle class="card--subtitle">Barbara Kimosop - University of Nairobi</v-card-subtitle>
 
-		<v-card-text class="resource--excerpt">
-			Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-			industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-			scrambled. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-			the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-			scrambled.
-		</v-card-text>
-		<v-card-actions>
-			<span class="resource--date">Apr 2021</span>
-			<a href="#" class="resource--link">Read More</a>
-		</v-card-actions>
-	</v-card>
+			<v-card-text class="resource--excerpt">
+				Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+				industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+				scrambled. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+				been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+				type and scrambled.
+			</v-card-text>
+			<v-card-actions>
+				<span class="resource--date">Apr 2021</span>
+				<a href="#" class="resource--link">Read More</a>
+			</v-card-actions>
+		</v-card>
+	</router-link>
 </template>
 <script>
 export default {
