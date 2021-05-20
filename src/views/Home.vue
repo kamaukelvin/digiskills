@@ -18,26 +18,24 @@
 
 							<v-list-item two-line class="px-0">
 								<v-list-item-content>
-									<v-list-item-title class="border-bottom font-weight-bold pb-3 tex-capitalize"
+									<v-list-item-title class="home--sidebar--list"
 										>Most in Demand Skills</v-list-item-title
 									>
 									<div class="py-4 px-0"><Skills /></div>
-									<v-list-item-title class="border-bottom font-weight-bold pb-3 tex-capitalize"
+									<v-list-item-title class="home--sidebar--list"
 										>Number of Programs</v-list-item-title
 									>
-									<v-list-item-subtitle class="py-4 font-weight-bold" color="info"
+									<v-list-item-subtitle class="home--sidebar--sublist" color="info"
 										>11584</v-list-item-subtitle
 									>
-									<v-list-item-title class="border-bottom font-weight-bold pb-3 tex-capitalize"
+									<v-list-item-title class="home--sidebar--list"
 										>Number of Graduates</v-list-item-title
 									>
-									<v-list-item-subtitle class="py-4 font-weight-bold" color="info"
+									<v-list-item-subtitle class="home--sidebar--sublist" color="info"
 										>108874</v-list-item-subtitle
 									>
-									<v-list-item-title class="border-bottom font-weight-bold pb-3 tex-capitalize"
-										>Number of Awards</v-list-item-title
-									>
-									<v-list-item-subtitle class="py-4 font-weight-bold" color="info"
+									<v-list-item-title class="home--sidebar--list">Number of Awards</v-list-item-title>
+									<v-list-item-subtitle class="home--sidebar--sublist" color="info"
 										>3874</v-list-item-subtitle
 									>
 								</v-list-item-content>
@@ -96,4 +94,18 @@ export default {
 	},
 };
 </script>
-<style scoped></style>
+<style scoped>
+.home--sidebar--list {
+	font-size: 1.2rem;
+	border-bottom: 1px solid #ebebeb;
+	font-weight: bold;
+	padding-bottom: 1rem;
+	text-transform: capitalize;
+}
+.home--sidebar--sublist {
+	font-size: 1rem;
+	color: #575f6e;
+	font-weight: bold;
+	padding: 1.5rem 0;
+}
+</style>

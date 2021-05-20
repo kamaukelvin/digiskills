@@ -20,4 +20,8 @@ export default {
 	}),
 };
 </script>
-<style scoped></style>
+<style scoped>
+.v-breadcrumbs li:nth-child(2n) {
+	padding: 0 4px;
+}
+</style>

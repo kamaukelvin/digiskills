@@ -13,19 +13,12 @@
 					/>
 				</div>
 				<div class="input-group input-group-sm">
-					<select class="form-select form-select-sm" aria-label=".form-select-sm example">
-						<option selected>Open this select menu</option>
-						<option value="1">One</option>
-						<option value="2">Two</option>
-						<option value="3">Three</option>
-					</select>
+					<v-select :items="items" label="" dense outlined></v-select>
 				</div>
-				<select class="form-select form-select-sm" aria-label=".form-select-sm example">
-					<option selected>Open this select menu</option>
-					<option value="1">One</option>
-					<option value="2">Two</option>
-					<option value="3">Three</option>
-				</select>
+
+				<div class="input-group input-group-sm">
+					<v-select :items="items" label="" dense outlined></v-select>
+				</div>
 			</form>
 		</div>
 	</div>
@@ -33,6 +26,9 @@
 <script>
 export default {
 	name: 'Search',
+	data: () => ({
+		items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+	}),
 };
 </script>
 <style scoped>
@@ -43,6 +39,9 @@ export default {
 #search--form {
 	display: flex;
 	align-items: center;
+}
+#search--form div {
+	margin: 0 0.5em;
 }
 #search--form h5 {
 	color: #00466e;

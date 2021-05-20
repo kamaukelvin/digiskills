@@ -1,6 +1,6 @@
 <template>
 	<v-card :loading="loading" class="" max-width="320">
-		<v-img height="200" :src="Awards" class="p-relative"> </v-img>
+		<v-img height="200" :src="Awards" class="position-relative"> </v-img>
 
 		<v-card-title class="card--title">Top Digital Skills Program</v-card-title>
 		<v-card-subtitle class="card--subtitle">Africa, 2019</v-card-subtitle>

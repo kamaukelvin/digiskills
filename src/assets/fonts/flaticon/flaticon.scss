@@ -2,11 +2,11 @@ $flaticon-font: "flaticon";
 
 @font-face {
     font-family: $flaticon-font;
-    src: url("./flaticon.ttf?7150d66c443ec5fec5ec59312e398b2e") format("truetype"),
-url("./flaticon.woff?7150d66c443ec5fec5ec59312e398b2e") format("woff"),
-url("./flaticon.woff2?7150d66c443ec5fec5ec59312e398b2e") format("woff2"),
-url("./flaticon.eot?7150d66c443ec5fec5ec59312e398b2e#iefix") format("embedded-opentype"),
-url("./flaticon.svg?7150d66c443ec5fec5ec59312e398b2e#flaticon") format("svg");
+    src: url("./flaticon.ttf?b22c68be4f9c7dc4b2a00574aff74789") format("truetype"),
+url("./flaticon.woff?b22c68be4f9c7dc4b2a00574aff74789") format("woff"),
+url("./flaticon.woff2?b22c68be4f9c7dc4b2a00574aff74789") format("woff2"),
+url("./flaticon.eot?b22c68be4f9c7dc4b2a00574aff74789#iefix") format("embedded-opentype"),
+url("./flaticon.svg?b22c68be4f9c7dc4b2a00574aff74789#flaticon") format("svg");
 }
 
 i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
@@ -34,9 +34,13 @@ $flaticon-map: (
     "vimeo": "\f10b",
     "plus": "\f10c",
     "antenna": "\f10d",
-    "vector2": "\f10e",
-    "map-marker": "\f10f",
+    "map-marker": "\f10e",
+    "vector2": "\f10f",
     "vector1": "\f110",
+    "next": "\f111",
+    "previous": "\f112",
+    "right-arrow": "\f113",
+    "left": "\f114",
 );
 
 .flaticon-placeholder:before {
@@ -78,12 +82,24 @@ $flaticon-map: (
 .flaticon-antenna:before {
     content: map-get($flaticon-map, "antenna");
 }
-.flaticon-vector2:before {
-    content: map-get($flaticon-map, "vector2");
-}
 .flaticon-map-marker:before {
     content: map-get($flaticon-map, "map-marker");
 }
+.flaticon-vector2:before {
+    content: map-get($flaticon-map, "vector2");
+}
 .flaticon-vector1:before {
     content: map-get($flaticon-map, "vector1");
+}
+.flaticon-next:before {
+    content: map-get($flaticon-map, "next");
+}
+.flaticon-previous:before {
+    content: map-get($flaticon-map, "previous");
+}
+.flaticon-right-arrow:before {
+    content: map-get($flaticon-map, "right-arrow");
+}
+.flaticon-left:before {
+    content: map-get($flaticon-map, "left");
 }

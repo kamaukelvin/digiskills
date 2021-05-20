@@ -1,7 +1,7 @@
 <template>
-	<div>
+	<v-app>
 		<router-view />
-	</div>
+	</v-app>
 </template>
 
 <script>
@@ -25,7 +25,7 @@ export default {
 	color: #00466e;
 	font-size: 16px;
 	font-weight: 700;
-	line-height: 1;
+	line-height: 1.6;
 }
 .card--subtitle {
 	color: #00b1bc !important;
@@ -35,7 +35,11 @@ export default {
 }
 .subtitle-1 {
 	color: #575f6e;
-	font-size: 12px;
+	font-size: 12px im !important;
 	font-weight: 400;
+}
+.form-control:focus {
+	border-color: #00b1bc;
+	box-shadow: none;
 }
 </style>

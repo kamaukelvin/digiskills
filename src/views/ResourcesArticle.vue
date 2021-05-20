@@ -29,7 +29,7 @@
 						<div class="card-body">
 							<BreadCrumbs />
 
-							<div class="p-relative">
+							<div class="position-relative">
 								<div class="download--button">D</div>
 								<h2 class="article--title">
 									New Trends in UX 2021: What the UI/UX revolution means for designers

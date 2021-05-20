@@ -12,8 +12,14 @@
 					></a>
 				</div>
 			</div>
-			<carousel :items="3" :dots="false" class="mx-auto">
+			<carousel :items="3" :dots="false" :nav="false" class="carousel">
+				<template slot="prev"
+					><span class="prevCarousel" id="prev"> <i class="flaticon-previous"/></span
+				></template>
 				<FeaturedCard v-for="(item, i) in 5" :key="i" />
+				<template slot="next"
+					><span class="nextCarousel" id="next"> <i class="flaticon-next"/></span
+				></template>
 			</carousel>
 			<section>
 				<div class="all--programs--header">
@@ -23,10 +29,10 @@
 					</div>
 				</div>
 				<ProgramCard v-for="(item, i) in 5" :key="i" />
-				<div class="d-flex justify-content-center align-items-center my-4">
-					<Button title="Show more" />
-				</div>
 			</section>
+			<div class="d-flex justify-content-center align-items-center my-4">
+				<Button title="Show more" />
+			</div>
 		</div>
 		<Footer />
 	</div>
@@ -40,6 +46,7 @@ import ProgramCard from '../components/ProgramCard';
 import Footer from '../components/Footer';
 import carousel from 'vue-owl-carousel';
 import BreadCrumbs from '../components/BreadCrumbs';
+import Button from '../components/Button';
 export default {
 	name: 'Programs',
 	components: {
@@ -51,6 +58,7 @@ export default {
 		Footer,
 		carousel,
 		BreadCrumbs,
+		Button,
 	},
 };
 </script>
@@ -90,5 +98,27 @@ export default {
 	color: #000;
 	font-weight: 700;
 	font-size: 16px;
+}
+.carousel {
+	padding: 0 4em;
+	position: relative;
+}
+.prevCarousel {
+	position: absolute;
+	left: 13px;
+	top: 40%;
+	z-index: 99;
+	font-size: 2.4em;
+	color: #00b1bc;
+	cursor: pointer;
+}
+.nextCarousel {
+	position: absolute;
+	right: 13px;
+	top: 40%;
+	z-index: 99;
+	font-size: 2.4em;
+	color: #00b1bc;
+	cursor: pointer;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
-	<v-card :loading="loading" class="my-12" max-width="320">
-		<v-img height="200" :src="Kings" class="p-relative">
-			<div class="logo--card"><v-img :src="KingsLogo" class="p-relative"></v-img></div>
+	<v-card :loading="loading" class="my-12 shadow-none" max-width="330">
+		<v-img height="200" :src="Kings" class="position-relative">
+			<div class="logo--card"><v-img :src="KingsLogo" class="position-relative"></v-img></div>
 		</v-img>
 
 		<v-card-title class="card--title">Kings and Queens Program</v-card-title>
@@ -36,8 +36,8 @@ export default {
 <style scoped>
 .logo--card {
 	position: absolute;
-	left: 30px;
-	top: 30px;
+	left: 20px;
+	top: 20px;
 	max-width: 60px;
 	max-height: 70px;
 	background: #fff;
@@ -47,19 +47,22 @@ export default {
 /* to be removed  */
 .card--title {
 	color: #00466e;
-	font-size: 16px;
+	font-size: 17px;
 	font-weight: 700;
 	line-height: 1;
 }
 .card--subtitle {
 	color: #00b1bc !important;
-	font-size: 13px;
+	font-size: 14px;
 	font-weight: 700;
 	padding-bottom: 5px;
 }
 .subtitle-1 {
 	color: #575f6e;
-	font-size: 12px;
+	font-size: 13px !important;
 	font-weight: 400;
+}
+.flaticon-placeholder {
+	font-size: 10px;
 }
 </style>

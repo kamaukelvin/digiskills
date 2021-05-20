@@ -6,10 +6,16 @@ import BluePrints from '../views/BluePrints.vue';
 import Resources from '../views/Resources.vue';
 import ResourcesArticle from '../views/ResourcesArticle.vue';
 import ProgramDetails from '../views/ProgramDetails.vue';
+import Register from '../views/Register.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
+	{
+		path: '/register',
+		name: 'register',
+		component: Register,
+	},
 	{
 		path: '/',
 		name: 'home',

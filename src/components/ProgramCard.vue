@@ -1,62 +1,66 @@
 <template>
-	<router-link to="/programs/1">
-		<div class="card program--card">
-			<div class="card-body">
-				<div class="row">
-					<div class="col-md-2 d-flex justify-content-center align-items-center">
-						<div class="">
-							<v-img :src="DigitalSkillsLogo" class="programs--logo"></v-img>
-						</div>
-					</div>
-					<div class="col-md-10">
-						<span class="float-md-right "><i class="pr-2 flaticon-vector1" />Available Online</span>
-						<h4 class="card--title">Digital Skills Program</h4>
-						<h5 class="card--subtitle">UI/UX Vocational Training</h5>
-						<p class="subtitle-1">
-							<span><i class="flaticon-placeholder"/></span> Stellenbosch, Western Cape, South Africa
-						</p>
-						<p>
-							3 years Data Science and Machine learning Course Program - Ed Dumani Scholarships May Cohort
-							(Online classes). This scholarship is tailored to allow more African students to experience
-							firsthand the challenges and growth of studying in a non-traditional region that is often
-							unfamiliar to and misunderstood by those in the different regions of Africa.
-						</p>
+	<div class="card program--card">
+		<div class="card-body">
+			<div class="row">
+				<div class="col-md-2 d-flex justify-content-center align-items-center">
+					<div class="">
+						<v-img :src="DigitalSkillsLogo" class="programs--logo"></v-img>
 					</div>
 				</div>
+				<div class="col-md-10">
+					<span class="float-md-right "><i class="pr-2 flaticon-vector1" />Available Online</span>
+					<router-link to="/programs/1">
+						<h4 class="card--title mb-0">Digital Skills Program</h4>
+						<h5 class="card--subtitle pb-0 mb-0">UI/UX Vocational Training</h5>
+					</router-link>
+					<p class="subtitle-1">
+						<span><i class="flaticon-placeholder"/></span> Stellenbosch, Western Cape, South Africa
+					</p>
+					<p>
+						3 years Data Science and Machine learning Course Program - Ed Dumani Scholarships May Cohort
+						(Online classes). This scholarship is tailored to allow more African students to experience
+						firsthand the challenges and growth of studying in a non-traditional region that is often
+						unfamiliar to and misunderstood by those in the different regions of Africa.
+					</p>
+				</div>
 			</div>
+		</div>
 
-			<div class="card-footer program--card--footer">
-				<div class="row">
-					<div class="col-md-2">
-						<p class="program--reviews"><i class="flaticon-vector2" />21 Reviews</p>
-					</div>
-					<div class="col-md-10">
-						<div class="d-flex justify-content-between align-items-center">
-							<v-rating
-								class="pl-md-3"
-								v-model="rating"
-								background-color="orange lighten-3"
-								color="orange"
-								small
-							></v-rating>
-							<div>
-								<Button title="Visit website" />
-							</div>
-						</div>
+		<div class="card-footer program--card--footer">
+			<div class="row">
+				<div class="col-md-2">
+					<p class="program--reviews">
+						<a href="#"><i class="flaticon-vector2" />21 Reviews</a>
+					</p>
+				</div>
+				<div class="col-md-10">
+					<div class="">
+						<v-rating
+							class="pl-md-3 float-left"
+							v-model="rating"
+							background-color="orange lighten-3"
+							color="orange"
+							small
+						></v-rating>
+
+						<Button title="Visit website" class="float-right" />
+						<OutlineButton title="View Program" class="float-right mr-md-3" />
 					</div>
 				</div>
 			</div>
 		</div>
-	</router-link>
+	</div>
 </template>
 <script>
 import Button from './Button';
+import OutlineButton from './OutlineButton';
 import DigitalSkillsLogo from '../assets/images/DigitalSkills-Logo.png';
 
 export default {
 	name: 'ProgramCard',
 	components: {
 		Button,
+		OutlineButton,
 	},
 	data: () => ({
 		rating: 4.5,
@@ -80,7 +84,7 @@ export default {
 }
 
 .flaticon-placeholder {
-	font-size: 16px;
+	font-size: 10px;
 }
 .flaticon-vector1,
 .flaticon-vector2 {
@@ -97,22 +101,24 @@ export default {
 	max-height: 100px;
 	max-width: 100px;
 }
+a {
+	text-decoration: none;
+}
 /* to be removed  */
 .card--title {
 	color: #00466e;
 	font-size: 16px;
 	font-weight: 700;
-	line-height: 1;
+	line-height: 1.6;
 }
 .card--subtitle {
 	color: #00b1bc !important;
 	font-size: 13px;
 	font-weight: 700;
-	padding-bottom: 5px;
 }
 .subtitle-1 {
 	color: #575f6e;
-	font-size: 12px;
+	font-size: 12px !important;
 	font-weight: 400;
 }
 </style>
