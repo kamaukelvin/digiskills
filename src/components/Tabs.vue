@@ -16,7 +16,9 @@
 				<h3 class="title my-4">What you need to know</h3>
 				<v-expansion-panels>
 					<v-expansion-panel v-for="item in expansions" :key="item.title">
-						<v-expansion-panel-header class="expansion--title">{{ item.title }}</v-expansion-panel-header>
+						<v-expansion-panel-header class="expansion--title"
+							><span><i class="icon-Vector4"/></span>{{ item.title }}</v-expansion-panel-header
+						>
 						<v-expansion-panel-content class="tabs--content">
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 							labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -54,7 +56,8 @@ export default {
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
 			expansions: [
 				{
-					title: 'Locations',
+					title: 'Location',
+					icon: 'icon-Vector4',
 					contents: '',
 				},
 				{

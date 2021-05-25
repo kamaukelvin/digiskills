@@ -20,9 +20,10 @@ export default {
 	border: 2px solid #00b1bc;
 }
 .primary__button:hover {
-	background: #fff;
-	color: #00b1bc;
 	border: 2px solid #00b1bc;
 	transition: 0.3s;
+}
+.primary__button:focus {
+	box-shadow: none;
 }
 </style>

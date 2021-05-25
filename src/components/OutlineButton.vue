@@ -24,4 +24,7 @@ export default {
 	background: #00b1bc;
 	color: #fff;
 }
+.outline__button:focus {
+	box-shadow: none;
+}
 </style>

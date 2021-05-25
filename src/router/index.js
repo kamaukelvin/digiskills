@@ -7,17 +7,23 @@ import Resources from '../views/Resources.vue';
 import ResourcesArticle from '../views/ResourcesArticle.vue';
 import ProgramDetails from '../views/ProgramDetails.vue';
 import Register from '../views/Register.vue';
+import SignIn from '../views/SignIn.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
 	{
-		path: '/register',
+		path: '/',
 		name: 'register',
 		component: Register,
 	},
 	{
-		path: '/',
+		path: '/login',
+		name: 'login',
+		component: SignIn,
+	},
+	{
+		path: '/home',
 		name: 'home',
 		component: Home,
 	},

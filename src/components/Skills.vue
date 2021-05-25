@@ -93,11 +93,11 @@ h5 {
 }
 .skills h4 {
 	color: #06685c;
-	font-size: 18px;
+	font-size: 17px;
 }
 #h4--bold {
 	color: #00b1bc;
-	font-size: 18px;
+	font-size: 17px;
 	font-weight: 700;
 }
 .skills h5 {

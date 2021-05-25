@@ -12,20 +12,25 @@
 						aria-describedby="search-sm"
 					/>
 				</div>
-				<div class="input-group input-group-sm">
+				<Button title="Go" />
+				<!-- <div class="input-group input-group-sm">
 					<v-select :items="items" label="" dense outlined></v-select>
 				</div>
 
 				<div class="input-group input-group-sm">
 					<v-select :items="items" label="" dense outlined></v-select>
-				</div>
+				</div> -->
 			</form>
 		</div>
 	</div>
 </template>
 <script>
+import Button from '../components/Button';
 export default {
 	name: 'Search',
+	components: {
+		Button,
+	},
 	data: () => ({
 		items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
 	}),

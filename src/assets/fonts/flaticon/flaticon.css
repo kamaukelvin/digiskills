@@ -1,10 +1,10 @@
 @font-face {
     font-family: "flaticon";
-    src: url("./flaticon.ttf?b22c68be4f9c7dc4b2a00574aff74789") format("truetype"),
-url("./flaticon.woff?b22c68be4f9c7dc4b2a00574aff74789") format("woff"),
-url("./flaticon.woff2?b22c68be4f9c7dc4b2a00574aff74789") format("woff2"),
-url("./flaticon.eot?b22c68be4f9c7dc4b2a00574aff74789#iefix") format("embedded-opentype"),
-url("./flaticon.svg?b22c68be4f9c7dc4b2a00574aff74789#flaticon") format("svg");
+    src: url("./flaticon.ttf?06a05205e8e15c600e802bded1d9696b") format("truetype"),
+url("./flaticon.woff?06a05205e8e15c600e802bded1d9696b") format("woff"),
+url("./flaticon.woff2?06a05205e8e15c600e802bded1d9696b") format("woff2"),
+url("./flaticon.eot?06a05205e8e15c600e802bded1d9696b#iefix") format("embedded-opentype"),
+url("./flaticon.svg?06a05205e8e15c600e802bded1d9696b#flaticon") format("svg");
 }
 
 i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
@@ -27,54 +27,63 @@ i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
 .flaticon-magnifying-glass:before {
     content: "\f103";
 }
-.flaticon-phone:before {
+.flaticon-envelope:before {
     content: "\f104";
 }
-.flaticon-envelope:before {
+.flaticon-world:before {
     content: "\f105";
 }
-.flaticon-world:before {
+.flaticon-worldwide:before {
     content: "\f106";
 }
-.flaticon-worldwide:before {
+.flaticon-youtube:before {
     content: "\f107";
 }
-.flaticon-youtube:before {
+.flaticon-twitter:before {
     content: "\f108";
 }
-.flaticon-twitter:before {
+.flaticon-facebook:before {
     content: "\f109";
 }
-.flaticon-facebook:before {
+.flaticon-vimeo:before {
     content: "\f10a";
 }
-.flaticon-vimeo:before {
+.flaticon-plus:before {
     content: "\f10b";
 }
-.flaticon-plus:before {
+.flaticon-antenna:before {
     content: "\f10c";
 }
-.flaticon-antenna:before {
+.flaticon-map-marker:before {
     content: "\f10d";
 }
-.flaticon-map-marker:before {
+.flaticon-vector2:before {
     content: "\f10e";
 }
-.flaticon-vector2:before {
+.flaticon-vector1:before {
     content: "\f10f";
 }
-.flaticon-vector1:before {
+.flaticon-next:before {
     content: "\f110";
 }
-.flaticon-next:before {
+.flaticon-previous:before {
     content: "\f111";
 }
-.flaticon-previous:before {
+.flaticon-right-arrow:before {
     content: "\f112";
 }
-.flaticon-right-arrow:before {
+.flaticon-left:before {
     content: "\f113";
 }
-.flaticon-left:before {
+.flaticon-phone:before {
     content: "\f114";
+}
+.flaticon-star:before {
+    content: "\f115";
+}
+.flaticon-linkedin:before {
+    content: "\f116";
+}
+.flaticon-facebook-circular-logo:before {
+    content: "\f117";
 }

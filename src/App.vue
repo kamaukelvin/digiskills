@@ -12,6 +12,7 @@ export default {
 
 <style>
 @import url(./assets/fonts/flaticon/flaticon.css);
+@import url(./assets/fonts/icomoon/style.css);
 .bg {
 	background: #e5e5e5;
 	min-height: 100vh;
@@ -41,5 +42,9 @@ export default {
 .form-control:focus {
 	border-color: #00b1bc;
 	box-shadow: none;
+}
+.v-application ol,
+.v-application ul {
+	padding-left: 0px !important;
 }
 </style>

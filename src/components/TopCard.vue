@@ -38,9 +38,15 @@
 				</li>
 			</ul>
 			<ul class="contacts">
-				<li>+254-770-454-889</li>
-				<li>digiskills254@gmail.com</li>
-				<li>www.digiskills254.com</li>
+				<li>
+					<span><i class="flaticon-phone"></i></span>+254-770-454-889
+				</li>
+				<li>
+					<span><i class="flaticon-envelope"></i></span>digiskills254@gmail.com
+				</li>
+				<li>
+					<span><i class="flaticon-world"></i></span>www.digiskills254.com
+				</li>
 			</ul>
 			<Button title="Visit Website" />
 		</div></div
@@ -93,5 +99,11 @@ ul {
 	margin: 0 1.2em 0 0;
 	color: #575f6e;
 	font-size: 14px;
+}
+.flaticon-phone,
+.flaticon-envelope,
+.flaticon-world {
+	color: #00b1bc;
+	margin-right: 0.7em;
 }
 </style>

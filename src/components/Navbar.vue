@@ -10,7 +10,7 @@
 			</div>
 			<div>
 				<ul class="nav__links">
-					<router-link tag="li" to="/">Home</router-link>
+					<router-link tag="li" to="/home">Home</router-link>
 					<router-link tag="li" to="/programs">Programs</router-link>
 					<router-link tag="li" to="/blueprints">Blueprint</router-link>
 					<router-link tag="li" to="/resources">Resources</router-link>
@@ -71,6 +71,8 @@ ul li {
 }
 .logo > img {
 	margin-right: 20px;
+	max-width: 40px;
+	max-height: 40px;
 }
 .title {
 	color: #00b1bc;

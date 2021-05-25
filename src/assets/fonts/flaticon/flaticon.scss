@@ -2,11 +2,11 @@ $flaticon-font: "flaticon";
 
 @font-face {
     font-family: $flaticon-font;
-    src: url("./flaticon.ttf?b22c68be4f9c7dc4b2a00574aff74789") format("truetype"),
-url("./flaticon.woff?b22c68be4f9c7dc4b2a00574aff74789") format("woff"),
-url("./flaticon.woff2?b22c68be4f9c7dc4b2a00574aff74789") format("woff2"),
-url("./flaticon.eot?b22c68be4f9c7dc4b2a00574aff74789#iefix") format("embedded-opentype"),
-url("./flaticon.svg?b22c68be4f9c7dc4b2a00574aff74789#flaticon") format("svg");
+    src: url("./flaticon.ttf?06a05205e8e15c600e802bded1d9696b") format("truetype"),
+url("./flaticon.woff?06a05205e8e15c600e802bded1d9696b") format("woff"),
+url("./flaticon.woff2?06a05205e8e15c600e802bded1d9696b") format("woff2"),
+url("./flaticon.eot?06a05205e8e15c600e802bded1d9696b#iefix") format("embedded-opentype"),
+url("./flaticon.svg?06a05205e8e15c600e802bded1d9696b#flaticon") format("svg");
 }
 
 i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
@@ -24,23 +24,26 @@ $flaticon-map: (
     "placeholder": "\f101",
     "search": "\f102",
     "magnifying-glass": "\f103",
-    "phone": "\f104",
-    "envelope": "\f105",
-    "world": "\f106",
-    "worldwide": "\f107",
-    "youtube": "\f108",
-    "twitter": "\f109",
-    "facebook": "\f10a",
-    "vimeo": "\f10b",
-    "plus": "\f10c",
-    "antenna": "\f10d",
-    "map-marker": "\f10e",
-    "vector2": "\f10f",
-    "vector1": "\f110",
-    "next": "\f111",
-    "previous": "\f112",
-    "right-arrow": "\f113",
-    "left": "\f114",
+    "envelope": "\f104",
+    "world": "\f105",
+    "worldwide": "\f106",
+    "youtube": "\f107",
+    "twitter": "\f108",
+    "facebook": "\f109",
+    "vimeo": "\f10a",
+    "plus": "\f10b",
+    "antenna": "\f10c",
+    "map-marker": "\f10d",
+    "vector2": "\f10e",
+    "vector1": "\f10f",
+    "next": "\f110",
+    "previous": "\f111",
+    "right-arrow": "\f112",
+    "left": "\f113",
+    "phone": "\f114",
+    "star": "\f115",
+    "linkedin": "\f116",
+    "facebook-circular-logo": "\f117",
 );
 
 .flaticon-placeholder:before {
@@ -51,9 +54,6 @@ $flaticon-map: (
 }
 .flaticon-magnifying-glass:before {
     content: map-get($flaticon-map, "magnifying-glass");
-}
-.flaticon-phone:before {
-    content: map-get($flaticon-map, "phone");
 }
 .flaticon-envelope:before {
     content: map-get($flaticon-map, "envelope");
@@ -102,4 +102,16 @@ $flaticon-map: (
 }
 .flaticon-left:before {
     content: map-get($flaticon-map, "left");
+}
+.flaticon-phone:before {
+    content: map-get($flaticon-map, "phone");
+}
+.flaticon-star:before {
+    content: map-get($flaticon-map, "star");
+}
+.flaticon-linkedin:before {
+    content: map-get($flaticon-map, "linkedin");
+}
+.flaticon-facebook-circular-logo:before {
+    content: map-get($flaticon-map, "facebook-circular-logo");
 }

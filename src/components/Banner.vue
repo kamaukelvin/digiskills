@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="card banner--card">
 				<div class="card-body">
-					<carousel :items="1" :dots="false" :nav="false" :loop="true">
+					<carousel :items="1" :dots="false" :nav="false">
 						<template slot="prev"
 							><span class="prevCarousel" id="prev"> <i class="flaticon-left"/></span
 						></template>
@@ -15,9 +15,11 @@
 								programs and select the type of experience you're interested in!
 							</p>
 						</div>
-
+						<template slot="prev"
+							><span class="prevCarousel"> <i class="flaticon-left"/></span
+						></template>
 						<template slot="next"
-							><span class="nextCarousel" id="next"> <i class="flaticon-right-arrow"/></span
+							><span class="nextCarousel"> <i class="flaticon-right-arrow"/></span
 						></template>
 					</carousel>
 				</div>
@@ -50,17 +52,19 @@ export default {
 	color: #00b1bc;
 	font-weight: 700;
 }
-#next {
+.nextCarousel {
 	position: absolute;
 	bottom: 5px;
 	right: 60px;
 	cursor: pointer;
+	z-index: 99;
 }
-#prev {
+.prevCarousel {
 	position: absolute;
 	bottom: 5px;
 	right: 90px;
 	cursor: pointer;
+	z-index: 99;
 }
 .carousel--excerpt {
 	font-size: 13px;

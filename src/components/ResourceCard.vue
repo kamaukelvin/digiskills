@@ -1,24 +1,25 @@
 <template>
-	<router-link to="/resources/1">
-		<v-card :loading="loading" class="my-5 resource--card" elevation="0">
-			<v-card-title class="card--title"
-				>New Trends in UX 2021: What the UI/UX revolution means for designers</v-card-title
-			>
-			<v-card-subtitle class="card--subtitle">Barbara Kimosop - University of Nairobi</v-card-subtitle>
-
-			<v-card-text class="resource--excerpt">
+	<div class="card resource--card">
+		<div class="card-body">
+			<router-link to="/resources/1">
+				<h3 class="card--title">
+					New Trends in UX 2021: What the UI/UX revolution means for designer
+				</h3>
+				<h4 class="card--subtitle">Barbara Kimosop - University of Nairobi</h4>
+			</router-link>
+			<div class="resource--excerpt">
 				Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
 				industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
 				scrambled. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
 				been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
 				type and scrambled.
-			</v-card-text>
-			<v-card-actions>
-				<span class="resource--date">Apr 2021</span>
-				<a href="#" class="resource--link">Read More</a>
-			</v-card-actions>
-		</v-card>
-	</router-link>
+			</div>
+		</div>
+		<div class="card-footer">
+			<small class="resource--date">Apr 2021</small>
+			<a href="#" class="resource--link">Read More</a>
+		</div>
+	</div>
 </template>
 <script>
 export default {
@@ -29,6 +30,7 @@ export default {
 .resource--card {
 	border-radius: 10px;
 	box-shadow: none;
+	margin: 2em 0;
 }
 .resource--excerpt {
 	color: #000;
@@ -38,11 +40,13 @@ export default {
 	color: #000;
 	float: left;
 	font-size: 14px;
+	float: left;
 }
 .resource--link {
 	color: #00b1bc;
 	margin-left: auto;
-	font-size: 14px;
+	font-size: 15px;
+	float: right;
 }
 /* to be removed  */
 .card--title {
@@ -53,8 +57,17 @@ export default {
 }
 .card--subtitle {
 	color: #00b1bc !important;
-	font-size: 13px;
+	font-size: 14px;
 	font-weight: 700;
 	padding-bottom: 5px;
+}
+
+.card-footer {
+	background: #fff;
+	border-top: none;
+	border-radius: 0 0 10px 10px;
+}
+a {
+	text-decoration: none;
 }
 </style>

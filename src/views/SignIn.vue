@@ -20,9 +20,9 @@
 					<v-img :lazy-src="Amico" max-width="350" :src="Amico"></v-img>
 				</div>
 				<div class="col-md-6">
-					<form class="register--form">
-						<h1 class="">Register</h1>
-						<p>Sign up with your social account</p>
+					<form class="register--form" @submit.prevent="login">
+						<h1 class="">Sign In</h1>
+						<p>Sign in with your social account</p>
 						<div class="social--icons">
 							<ul>
 								<li>
@@ -49,27 +49,23 @@
 						</div>
 						<div class="mb-3">
 							<label for="email" class="form-label">Email</label>
-							<input type="email" class="form-control" id="email" />
+							<input type="email" class="form-control" id="email" name="email" v-model="formData.email" />
 						</div>
 						<div class="mb-3">
 							<label for="password" class="form-label">Enter Password</label>
-							<input type="password" class="form-control" id="password" />
-						</div>
-						<div class="mb-3 form-check">
-							<input type="checkbox" class="form-check-input" id="terms" />
-							<label class="form-check-label" for="terms"
-								>I agree to <a href="#">terms & conditions</a></label
-							>
+							<input
+								type="password"
+								class="form-control"
+								id="password"
+								name="password"
+								v-model="formData.password"
+							/>
 						</div>
 
-						<button
-							type="submit"
-							class="btn btn-lg btn-primary btn-block register--button"
-							@click="register()"
-						>
-							Sign Up
+						<button type="submit" class="btn btn-lg btn-primary btn-block register--button">
+							Sign in
 						</button>
-						<p>Do you already have an account? <a href="#">Sign In</a></p>
+						<p>Don't have an account? <router-link to="/">Sign Up</router-link></p>
 					</form>
 				</div>
 			</div>
@@ -82,11 +78,12 @@ import Amico from '../assets/images/amico.png';
 export default {
 	name: 'Register',
 	data() {
-		return { Logo, Amico };
+		return { Logo, Amico, formData: { email: '', password: '' } };
 	},
 	methods: {
-		register() {
-			this.$router.push('/login');
+		login() {
+			console.log({ password: this.formData.password, email: this.formData.email });
+			// this.$router.push('/home');
 		},
 	},
 };

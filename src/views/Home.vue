@@ -108,4 +108,7 @@ export default {
 	font-weight: bold;
 	padding: 1.5rem 0;
 }
+.v-slider__tick {
+	background-color: transparent !important;
+}
 </style>
