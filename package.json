@@ -10,15 +10,18 @@
   "dependencies": {
     "@amcharts/amcharts4": "^4.10.18",
     "@amcharts/amcharts4-geodata": "^4.1.20",
-    "bootstrap-vue": "^2.1.0",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "install": "^0.13.0",
-    "swiper": "^6.6.2",
+    "vee-validate": "2.1.0-beta.7",
     "vue": "^2.6.11",
-    "vue-awesome-swiper": "^4.1.1",
     "vue-owl-carousel": "^2.0.3",
+    "vue-password-strength-meter": "^1.7.2",
     "vue-router": "^3.5.1",
-    "vuetify": "^2.5.0"
+    "vuetify": "^2.5.0",
+    "vuex": "^3.6.2",
+    "yup": "^0.32.9",
+    "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
     "@babel/polyfill": "^7.7.0",

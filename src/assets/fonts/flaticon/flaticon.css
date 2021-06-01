@@ -1,10 +1,10 @@
 @font-face {
     font-family: "flaticon";
-    src: url("./flaticon.ttf?06a05205e8e15c600e802bded1d9696b") format("truetype"),
-url("./flaticon.woff?06a05205e8e15c600e802bded1d9696b") format("woff"),
-url("./flaticon.woff2?06a05205e8e15c600e802bded1d9696b") format("woff2"),
-url("./flaticon.eot?06a05205e8e15c600e802bded1d9696b#iefix") format("embedded-opentype"),
-url("./flaticon.svg?06a05205e8e15c600e802bded1d9696b#flaticon") format("svg");
+    src: url("./flaticon.ttf?d4123aba22ed03f632619938834ba408") format("truetype"),
+url("./flaticon.woff?d4123aba22ed03f632619938834ba408") format("woff"),
+url("./flaticon.woff2?d4123aba22ed03f632619938834ba408") format("woff2"),
+url("./flaticon.eot?d4123aba22ed03f632619938834ba408#iefix") format("embedded-opentype"),
+url("./flaticon.svg?d4123aba22ed03f632619938834ba408#flaticon") format("svg");
 }
 
 i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
@@ -54,36 +54,33 @@ i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
 .flaticon-antenna:before {
     content: "\f10c";
 }
-.flaticon-map-marker:before {
+.flaticon-vector2:before {
     content: "\f10d";
 }
-.flaticon-vector2:before {
+.flaticon-vector1:before {
     content: "\f10e";
 }
-.flaticon-vector1:before {
+.flaticon-next:before {
     content: "\f10f";
 }
-.flaticon-next:before {
+.flaticon-previous:before {
     content: "\f110";
 }
-.flaticon-previous:before {
+.flaticon-right-arrow:before {
     content: "\f111";
 }
-.flaticon-right-arrow:before {
+.flaticon-left:before {
     content: "\f112";
 }
-.flaticon-left:before {
+.flaticon-phone:before {
     content: "\f113";
 }
-.flaticon-phone:before {
+.flaticon-star:before {
     content: "\f114";
 }
-.flaticon-star:before {
+.flaticon-linkedin:before {
     content: "\f115";
 }
-.flaticon-linkedin:before {
-    content: "\f116";
-}
 .flaticon-facebook-circular-logo:before {
-    content: "\f117";
+    content: "\f116";
 }

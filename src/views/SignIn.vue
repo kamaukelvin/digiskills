@@ -1,6 +1,7 @@
 <template>
 	<div class="bg">
 		<div class="container">
+			<OtpDialog />
 			<div class="row mt-md-5">
 				<div class="col-md-6 d-none d-md-block">
 					<div class="logo">
@@ -49,7 +50,18 @@
 						</div>
 						<div class="mb-3">
 							<label for="email" class="form-label">Email</label>
-							<input type="email" class="form-control" id="email" name="email" v-model="formData.email" />
+							<input
+								type="email"
+								class="form-control"
+								id="email"
+								name="email"
+								v-validate="'required|email'"
+								:class="{ 'is-invalid': submitted && errors.has('email') }"
+								v-model="formData.email"
+							/>
+							<div v-if="submitted && errors.has('email')" class="invalid-feedback">
+								{{ errors.first('email') }}
+							</div>
 						</div>
 						<div class="mb-3">
 							<label for="password" class="form-label">Enter Password</label>
@@ -58,8 +70,13 @@
 								class="form-control"
 								id="password"
 								name="password"
+								v-validate="'required'"
+								:class="{ 'is-invalid': submitted && errors.has('password') }"
 								v-model="formData.password"
 							/>
+							<div v-if="submitted && errors.has('password')" class="invalid-feedback">
+								{{ errors.first('password') }}
+							</div>
 						</div>
 
 						<button type="submit" class="btn btn-lg btn-primary btn-block register--button">
@@ -75,15 +92,29 @@
 <script>
 import Logo from '../assets/images/Logo.png';
 import Amico from '../assets/images/amico.png';
+import { api_srv } from '../services';
+import OtpDialog from '../components/OtpDialog';
 export default {
 	name: 'Register',
+	components: { OtpDialog },
 	data() {
-		return { Logo, Amico, formData: { email: '', password: '' } };
+		return { Logo, Amico, submitted: false, dialog: false, formData: { email: '', password: '' } };
 	},
 	methods: {
 		login() {
-			console.log({ password: this.formData.password, email: this.formData.email });
-			// this.$router.push('/home');
+			this.submitted = true;
+			this.$validator.validate().then(async (valid) => {
+				if (valid) {
+					try {
+						let response = await api_srv.login(this.formData);
+						console.log('login response', response);
+						this.$router.push('/home');
+					} catch (err) {
+						let error = await err;
+						console.log('login error', error);
+					}
+				}
+			});
 		},
 	},
 };
