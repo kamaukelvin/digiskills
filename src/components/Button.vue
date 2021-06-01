@@ -11,7 +11,7 @@ export default {
 	},
 };
 </script>
-<style scoped>
+<style>
 .primary__button {
 	background: #00b1bc;
 	color: #fff;

@@ -5,8 +5,21 @@
 </template>
 
 <script>
+import axios from 'axios';
+import { AUTH_LOGOUT } from './store/actions/auth';
 export default {
 	name: 'App',
+	created: function() {
+		axios.interceptors.response.use(undefined, function(err) {
+			return new Promise(function() {
+				if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
+					// if  unauthorized, logout the user
+					this.$store.dispatch(AUTH_LOGOUT);
+				}
+				throw err;
+			});
+		});
+	},
 };
 </script>
 
@@ -46,5 +59,10 @@ export default {
 .v-application ol,
 .v-application ul {
 	padding-left: 0px !important;
+}
+.form-control {
+	background-color: transparent;
+	border: 1px solid #00b1bc;
+	border-radius: 4px;
 }
 </style>

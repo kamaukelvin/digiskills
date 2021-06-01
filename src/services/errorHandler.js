@@ -1,9 +1,6 @@
 async function handle_api_error(error) {
 	try {
-		console.log('WE LANDED IN THAT PAGE FOR REAL', error);
-		// UNAUTHORISED;
-
-		return error.err_msg;
+		return error.message;
 	} catch (err) {
 		return err;
 	}

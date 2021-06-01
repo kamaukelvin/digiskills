@@ -1,11 +1,6 @@
 <template>
 	<v-row justify="center">
-		<v-dialog v-model="dialog" persistent max-width="550">
-			<template v-slot:activator="{ on, attrs }">
-				<v-btn color="primary" dark v-bind="attrs" v-on="on">
-					Open Dialog
-				</v-btn>
-			</template>
+		<v-dialog v-model="show" persistent max-width="550">
 			<v-card>
 				<div class="otp__card">
 					<i class="flaticon-envelope text-center my-3" />
@@ -16,8 +11,23 @@
 						>A one time password has been sent to .........
 						<v-spacer></v-spacer>
 						<v-spacer></v-spacer>
+						<form @submit.prevent="verify">
+							<input
+								type="text"
+								class="form-control form-control-sm"
+								name="otp"
+								v-validate="'required'"
+								:class="{ 'is-invalid': submitted && errors.has('otp') }"
+								v-model="otp"
+							/>
 
-						<Button title="Verify" class="my-2" @click="dialog = false" />
+							<div v-if="submitted && errors.has('otp')" class="invalid-feedback">
+								{{ errors.first('otp') }}
+							</div>
+							<button type="submit" class="primary__button btn btn-md" @click.stop="show = false">
+								Verify
+							</button>
+						</form>
 					</v-card-text>
 				</div>
 			</v-card>
@@ -25,15 +35,49 @@
 	</v-row>
 </template>
 <script>
-import Button from './Button';
+import { VERIFY_REQUEST } from '../store/actions/auth';
 export default {
 	name: 'OtpDialog',
-	props: {
-		dialog: Boolean,
-	},
-	components: { Button },
+	props: ['visible'],
 	data() {
-		return {};
+		return { otp: '', submitted: false };
+	},
+	methods: {
+		showError(message, type) {
+			this.$toast.open({
+				message: message,
+				type: type,
+			});
+		},
+
+		verify() {
+			this.submitted = true;
+			this.$validator.validate().then(async (valid) => {
+				if (valid) {
+					this.$store
+						.dispatch(VERIFY_REQUEST, this.otp)
+						.then(() => {
+							this.$router.push('/home');
+						})
+						.catch(async (err) => {
+							let error = await err;
+							this.showError(error, 'error');
+						});
+				}
+			});
+		},
+	},
+	computed: {
+		show: {
+			get() {
+				return this.visible;
+			},
+			set(value) {
+				if (!value) {
+					this.$emit('close');
+				}
+			},
+		},
 	},
 };
 </script>
@@ -49,7 +93,7 @@ export default {
 	color: #00b1bc;
 }
 .headline {
-	font-size: 1rem;
+	font-size: 1rem !important;
 	padding: 5px 16px;
 }
 </style>

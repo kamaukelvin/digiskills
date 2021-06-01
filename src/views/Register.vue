@@ -20,6 +20,7 @@
 					<v-img :lazy-src="Amico" max-width="350" :src="Amico"></v-img>
 				</div>
 				<div class="col-md-6">
+					<OtpDialog :visible="showOtp" @close="showOtp = false" />
 					<form @submit.prevent="register" class="register--form">
 						<h1 class="">Register</h1>
 						<p>Sign up with your social account</p>
@@ -51,16 +52,16 @@
 							<label for="" class="form-label">I would like to</label>
 							<select
 								class="form-select form-control"
-								name="user"
+								name="user_type"
 								v-validate="'required'"
-								:class="{ 'is-invalid': submitted && errors.has('user') }"
-								v-model="formData.user"
+								:class="{ 'is-invalid': submitted && errors.has('user_type') }"
+								v-model="formData.user_type"
 							>
 								<option value="institution">Register a Program</option>
 								<option value="reviewer">Review a program</option>
 							</select>
-							<div v-if="submitted && errors.has('user')" class="invalid-feedback">
-								{{ errors.first('user') }}
+							<div v-if="submitted && errors.has('user_type')" class="invalid-feedback">
+								{{ errors.first('user_type') }}
 							</div>
 						</div>
 						<div class="form-group">
@@ -82,14 +83,15 @@
 							<label for="full_name" class="form-label">Full Name</label>
 							<input
 								type="text"
-								name="name"
-								v-validate="'required'"
-								:class="{ 'is-invalid': submitted && errors.has('name') }"
-								v-model="formData.name"
+								name="full_name"
 								class="form-control"
+								v-validate="'required'"
+								:class="{ 'is-invalid': submitted && errors.has('full_name') }"
+								v-model="formData.full_name"
+								id="full_name"
 							/>
 							<div v-if="submitted && errors.has('name')" class="invalid-feedback">
-								{{ errors.first('name') }}
+								{{ errors.first('full_name') }}
 							</div>
 						</div>
 						<div class="form-group">
@@ -154,11 +156,12 @@
 import Logo from '../assets/images/Logo.png';
 import Amico from '../assets/images/amico.png';
 import Password from 'vue-password-strength-meter';
-import { api_srv } from '../services';
+import { REG_REQUEST } from '../store/actions/auth';
+import OtpDialog from '../components/OtpDialog';
 // import { initFbsdk } from '@/config/facebook_oAuth.js';
 export default {
 	name: 'Register',
-	components: { Password },
+	components: { Password, OtpDialog },
 
 	// mounted() {
 	// 	initFbsdk();
@@ -168,22 +171,30 @@ export default {
 			Logo,
 			Amico,
 			submitted: false,
-			formData: { email: '', password: '', full_name: '', phone: '', user: '', terms: '' },
+			showOtp: false,
+			formData: { email: '', password: '', full_name: '', phone: '', user_type: '', terms: '' },
 		};
 	},
 	methods: {
+		open(message, type) {
+			this.$toast.open({
+				message: message,
+				type: type,
+			});
+		},
 		register() {
 			this.submitted = true;
 			this.$validator.validate().then(async (valid) => {
 				if (valid) {
-					try {
-						let response = await api_srv.register(this.formData);
-						console.log('register response', response);
-						this.$router.push('/login');
-					} catch (err) {
-						let error = await err;
-						console.log('register error', error);
-					}
+					this.$store
+						.dispatch(REG_REQUEST, this.formData)
+						.then(() => {
+							this.showOtp = true;
+						})
+						.catch(async (err) => {
+							let error = await err;
+							this.open(error, 'error');
+						});
 				}
 			});
 		},
@@ -267,6 +278,9 @@ export default {
 	background-color: transparent;
 	border: 1px solid #00b1bc;
 	border-radius: 4px;
+}
+.form-control:focus {
+	box-shadow: none !important;
 }
 .form-label {
 	color: #696f79;

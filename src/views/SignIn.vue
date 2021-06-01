@@ -1,7 +1,7 @@
 <template>
 	<div class="bg">
 		<div class="container">
-			<OtpDialog />
+			
 			<div class="row mt-md-5">
 				<div class="col-md-6 d-none d-md-block">
 					<div class="logo">
@@ -92,27 +92,35 @@
 <script>
 import Logo from '../assets/images/Logo.png';
 import Amico from '../assets/images/amico.png';
-import { api_srv } from '../services';
-import OtpDialog from '../components/OtpDialog';
+import { AUTH_REQUEST } from '../store/actions/auth';
+
 export default {
-	name: 'Register',
-	components: { OtpDialog },
+	name: 'SignIn',
+	
 	data() {
-		return { Logo, Amico, submitted: false, dialog: false, formData: { email: '', password: '' } };
+		return { Logo, Amico, submitted: false, formData: { email: '', password: '' } };
 	},
 	methods: {
+		showError(message, type) {
+			this.$toast.open({
+				message: message,
+				type: type,
+			});
+		},
+
 		login() {
 			this.submitted = true;
 			this.$validator.validate().then(async (valid) => {
 				if (valid) {
-					try {
-						let response = await api_srv.login(this.formData);
-						console.log('login response', response);
-						this.$router.push('/home');
-					} catch (err) {
-						let error = await err;
-						console.log('login error', error);
-					}
+					this.$store
+						.dispatch(AUTH_REQUEST, this.formData)
+						.then(() => {
+							this.$router.push('/home');
+						})
+						.catch(async (err) => {
+							let error = await err;
+							this.showError(error, 'error');
+						});
 				}
 			});
 		},
@@ -163,12 +171,12 @@ export default {
 	font-size: 16px;
 	color: #777777;
 }
-
 .form-control {
 	background-color: transparent;
 	border: 1px solid #00b1bc;
 	border-radius: 4px;
 }
+
 .form-label {
 	color: #696f79;
 	font-size: 14px;

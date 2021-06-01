@@ -1,27 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { setStore, getStore } from '@/config/utils';
+import user from './modules/user';
+import auth from './modules/auth';
 
 Vue.use(Vuex);
 
-const user = getStore('user');
-
-const store = new Vuex.Store({
-	state: {
-		loginUser: user,
-	},
-	mutations: {
-		setLoginUser(state, user) {
-			state.loginUser = user;
-			setStore('user', user);
-		},
-	},
-	actions: {},
-	getters: {
-		getLoginUserInfo(state) {
-			return state.loginUser;
-		},
+export default new Vuex.Store({
+	modules: {
+		user,
+		auth,
 	},
 });
-
-export default store;
