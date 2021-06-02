@@ -8,19 +8,16 @@
 					</div>
 				</div>
 				<div class="col-md-10">
-					<span class="float-md-right "><i class="pr-2 flaticon-vector1" />Available Online</span>
+					<span class="float-md-right "><i class="pr-2 flaticon-vector1" />{{ program.availabilty }}</span>
 					<router-link to="/programs/1">
-						<h4 class="card--title mb-0">Digital Skills Program</h4>
-						<h5 class="card--subtitle pb-0 mb-0">UI/UX Vocational Training</h5>
+						<h4 class="card--title mb-0">{{ program.name }}</h4>
+						<h5 class="card--subtitle pb-0 mb-0">{{ program.type }}</h5>
 					</router-link>
 					<p class="subtitle-1">
-						<span><i class="flaticon-placeholder"/></span> Stellenbosch, Western Cape, South Africa
+						<span><i class="flaticon-placeholder"/></span> {{ program.location }}
 					</p>
 					<p>
-						3 years Data Science and Machine learning Course Program - Ed Dumani Scholarships May Cohort
-						(Online classes). This scholarship is tailored to allow more African students to experience
-						firsthand the challenges and growth of studying in a non-traditional region that is often
-						unfamiliar to and misunderstood by those in the different regions of Africa.
+						{{ program.partcipation_guidelines }}
 					</p>
 				</div>
 			</div>
@@ -58,10 +55,12 @@ import DigitalSkillsLogo from '../assets/images/DigitalSkills-Logo.png';
 
 export default {
 	name: 'ProgramCard',
+	props: ['program'],
 	components: {
 		Button,
 		OutlineButton,
 	},
+
 	data: () => ({
 		rating: 4.5,
 		DigitalSkillsLogo,

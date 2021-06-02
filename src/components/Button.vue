@@ -1,13 +1,14 @@
 <template>
 	<div>
-		<button class="primary__button btn btn-md">{{ title }}</button>
+		<button class="primary__button btn btn-md" @click="clickHandler">{{ title }}</button>
 	</div>
 </template>
 <script>
 export default {
 	name: 'Button',
-	props: {
-		title: String,
+	props: ['title'],
+	created() {
+		this.$emit('clickHandler');
 	},
 };
 </script>

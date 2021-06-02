@@ -52,7 +52,7 @@ function login({ email, password }) {
 		}
 	});
 }
-function verify({ otp }) {
+function verify(otp) {
 	return new Promise(function(resolve, reject) {
 		try {
 			let config = {
@@ -68,6 +68,27 @@ function verify({ otp }) {
 			};
 
 			let response = call_api(endpoint, body, config);
+			return resolve(response);
+		} catch (err) {
+			return reject(err);
+		}
+	});
+}
+function getPrograms() {
+	return new Promise(function(resolve, reject) {
+		try {
+			const token = localStorage.getItem('user-token');
+			let config = {
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json',
+					Authorization: `Bearer ${token}`,
+				},
+			};
+
+			let endpoint = 'programs';
+
+			let response = get_api(endpoint, config);
 			return resolve(response);
 		} catch (err) {
 			return reject(err);
@@ -94,5 +115,24 @@ async function call_api(endpoint, body, config) {
 			});
 	});
 }
+async function get_api(endpoint, config) {
+	return new Promise(function(resolve, reject) {
+		axios
+			.get(api_url + endpoint, config)
+			.then(function(response) {
+				return resolve(response.data);
+			})
+			.catch(function(error) {
+				if (error.response) {
+					// handle error
+					if (error.response.status >= 400) {
+						return reject(handle_api_error(error.response.data));
+					}
+				} else {
+					return reject(error);
+				}
+			});
+	});
+}
 
-export { register, login, verify };
+export { register, login, verify, getPrograms };

@@ -1,5 +1,5 @@
 <template>
-	<v-card :loading="loading" class="my-12 shadow-none" max-width="330">
+	<v-card class="my-12 shadow-none" max-width="330">
 		<v-img height="200" :src="Kings" class="position-relative">
 			<div class="logo--card"><v-img :src="KingsLogo" class="position-relative"></v-img></div>
 		</v-img>

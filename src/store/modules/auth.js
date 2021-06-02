@@ -17,11 +17,12 @@ const state = {
 	token: localStorage.getItem('user-token') || '',
 	status: '',
 	hasLoadedOnce: false,
-	loading: true,
+	loading: false,
 };
 
 const getters = {
 	isAuthenticated: (state) => !!state.token,
+	isLoading: (state) => state.loading,
 	authStatus: (state) => state.status,
 };
 
@@ -36,6 +37,7 @@ const actions = {
 				})
 				.catch(async (err) => {
 					let error = await err;
+					commit(REG_ERROR);
 					reject(error);
 				});
 		});
@@ -77,6 +79,7 @@ const actions = {
 		return new Promise((resolve) => {
 			commit(AUTH_LOGOUT);
 			localStorage.removeItem('user-token');
+			this.$router.push('/login');
 			resolve();
 		});
 	},
@@ -84,16 +87,16 @@ const actions = {
 
 const mutations = {
 	[REG_REQUEST]: (state) => {
-		state.status = 'loading';
+		state.loading = true;
 	},
 	[REG_SUCCESS]: (state, resp) => {
-		state.status = 'success';
 		state.token = resp.token;
 		state.hasLoadedOnce = true;
+		state.loading = false;
 	},
 	[REG_ERROR]: (state) => {
-		state.status = 'error';
 		state.hasLoadedOnce = true;
+		state.loading = false;
 	},
 
 	[AUTH_LOGOUT]: (state) => {
@@ -101,28 +104,34 @@ const mutations = {
 	},
 	[AUTH_REQUEST]: (state) => {
 		state.status = 'loading';
+		state.loading = true;
 	},
 	[AUTH_SUCCESS]: (state, resp) => {
 		state.status = 'success';
 		state.token = resp.token;
 		state.hasLoadedOnce = true;
+		state.loading = false;
 	},
 	[AUTH_ERROR]: (state) => {
 		state.status = 'error';
 		state.hasLoadedOnce = true;
+		state.loading = false;
 	},
 
 	[VERIFY_REQUEST]: (state) => {
 		state.status = 'loading';
+		state.loading = true;
 	},
 	[VERIFY_SUCCESS]: (state, resp) => {
 		state.status = 'success';
 		state.token = resp.token;
 		state.hasLoadedOnce = true;
+		state.loading = false;
 	},
 	[VERIFY_ERROR]: (state) => {
 		state.status = 'error';
 		state.hasLoadedOnce = true;
+		state.loading = false;
 	},
 };
 

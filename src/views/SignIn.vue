@@ -1,7 +1,6 @@
 <template>
 	<div class="bg">
 		<div class="container">
-			
 			<div class="row mt-md-5">
 				<div class="col-md-6 d-none d-md-block">
 					<div class="logo">
@@ -79,8 +78,21 @@
 							</div>
 						</div>
 
-						<button type="submit" class="btn btn-lg btn-primary btn-block register--button">
-							Sign in
+						<button
+							type="submit"
+							class="btn btn-lg btn-primary btn-block register--button"
+							:disabled="isLoading"
+						>
+							<span v-if="isLoading"
+								>Please wait...<v-progress-circular
+									indeterminate
+									:size="17"
+									:width="2"
+									class="ml-2"
+									color="white"
+								></v-progress-circular
+							></span>
+							<span v-else> Sign in</span>
 						</button>
 						<p>Don't have an account? <router-link to="/">Sign Up</router-link></p>
 					</form>
@@ -90,13 +102,14 @@
 	</div>
 </template>
 <script>
+import { mapGetters } from 'vuex';
 import Logo from '../assets/images/Logo.png';
 import Amico from '../assets/images/amico.png';
 import { AUTH_REQUEST } from '../store/actions/auth';
 
 export default {
 	name: 'SignIn',
-	
+
 	data() {
 		return { Logo, Amico, submitted: false, formData: { email: '', password: '' } };
 	},
@@ -124,6 +137,9 @@ export default {
 				}
 			});
 		},
+	},
+	computed: {
+		...mapGetters(['isLoading']),
 	},
 };
 </script>

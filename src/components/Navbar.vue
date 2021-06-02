@@ -16,9 +16,11 @@
 					<router-link tag="li" to="/resources">Resources</router-link>
 				</ul>
 			</div>
+
 			<div class="nav__icons">
 				<span><i class="flaticon-magnifying-glass"/></span>
-				<Button title="Sign In" />
+
+				<Button title="Logout" />
 			</div>
 		</div>
 	</div>
@@ -26,6 +28,7 @@
 <script>
 import Logo from '../assets/images/Logo.png';
 import Button from './Button';
+import { AUTH_LOGOUT } from '../store/actions/auth';
 export default {
 	name: 'Navbar',
 	components: {
@@ -35,6 +38,11 @@ export default {
 		return {
 			Logo,
 		};
+	},
+	methods: {
+		async logout() {
+			await this.$store.dispatch(AUTH_LOGOUT);
+		},
 	},
 };
 </script>

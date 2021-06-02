@@ -1,5 +1,8 @@
 <template>
-	<div class="bg">
+	<div v-if="$store.state.programs.loading">
+		<PageLoader />
+	</div>
+	<div class="bg" v-else>
 		<Navbar />
 		<Banner />
 		<div class="container">
@@ -23,12 +26,12 @@
 			</carousel>
 			<section>
 				<div class="all--programs--header">
-					<h6>Browse over 1260 programs that match your interest</h6>
+					<h6>{{ `Browse ${getPrograms.length} programs that match your interest` }}</h6>
 					<div>
 						Sort by:
 					</div>
 				</div>
-				<ProgramCard v-for="(item, i) in 5" :key="i" />
+				<ProgramCard v-for="program in getPrograms" :key="program.id" :program="program" />
 			</section>
 			<div class="d-flex justify-content-center align-items-center my-4">
 				<Button title="Show more" />
@@ -38,15 +41,19 @@
 	</div>
 </template>
 <script>
+import { mapGetters } from 'vuex';
+import carousel from 'vue-owl-carousel';
+
 import Navbar from '../components/Navbar';
 import Banner from '../components/Banner';
 import Search from '../components/Search';
 import FeaturedCard from '../components/FeaturedCard';
 import ProgramCard from '../components/ProgramCard';
 import Footer from '../components/Footer';
-import carousel from 'vue-owl-carousel';
 import BreadCrumbs from '../components/BreadCrumbs';
 import Button from '../components/Button';
+import PageLoader from '../components/loaders/PageLoader';
+import { PROGRAMS_REQUEST } from '../store/actions/programs';
 export default {
 	name: 'Programs',
 	components: {
@@ -59,6 +66,17 @@ export default {
 		carousel,
 		BreadCrumbs,
 		Button,
+		PageLoader,
+	},
+	data() {
+		return { loading: false };
+	},
+
+	async mounted() {
+		await this.$store.dispatch(PROGRAMS_REQUEST);
+	},
+	computed: {
+		...mapGetters(['getPrograms']),
 	},
 };
 </script>

@@ -1,17 +1,17 @@
-import '@babel/polyfill';
-import 'mutationobserver-shim';
 import Vue from 'vue';
-import App from './App.vue';
+
+import OtpInput from '@bachdgvn/vue-otp-input';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
+import VueToast from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
+
+import App from './App.vue';
 import vuetify from './plugins/vuetify';
 import router from './router';
 import store from './store';
 import GoogleAuth from '@/config/google_oAuth.js';
 import VeeValidate from 'vee-validate';
-import Loading from './components/Loading';
-import axios from 'axios';
-import VueToast from 'vue-toast-notification';
-import 'vue-toast-notification/dist/theme-sugar.css';
 
 Vue.config.productionTip = false;
 
@@ -30,12 +30,12 @@ if (token) {
 
 Vue.use(GoogleAuth, gauthOption);
 Vue.use(VeeValidate);
-Vue.component('loading', Loading);
 Vue.use(VueToast, {
 	duration: 5000,
 	dismissible: true,
 	position: 'top-right',
 });
+Vue.component('v-otp-input', OtpInput);
 
 new Vue({
 	vuetify,

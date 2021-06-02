@@ -142,8 +142,21 @@
 							</div>
 						</div>
 
-						<button type="submit" class="btn btn-lg btn-primary btn-block register--button">
-							Sign Up
+						<button
+							type="submit"
+							class="btn btn-lg btn-primary btn-block register--button"
+							:disabled="isLoading"
+						>
+							<span v-if="isLoading"
+								>Please wait...<v-progress-circular
+									indeterminate
+									:size="17"
+									:width="2"
+									class="ml-2"
+									color="white"
+								></v-progress-circular
+							></span>
+							<span v-else> Sign Up</span>
 						</button>
 					</form>
 					<p>Do you already have an account? <router-link to="/login">Sign In</router-link></p>
@@ -153,6 +166,7 @@
 	</div>
 </template>
 <script>
+import { mapGetters } from 'vuex';
 import Logo from '../assets/images/Logo.png';
 import Amico from '../assets/images/amico.png';
 import Password from 'vue-password-strength-meter';
@@ -226,6 +240,9 @@ export default {
 				this.$router.push('/home');
 			}, this.params);
 		},
+	},
+	computed: {
+		...mapGetters(['isLoading']),
 	},
 };
 </script>
