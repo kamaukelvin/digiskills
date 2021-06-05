@@ -22,7 +22,7 @@ function register({ full_name, email, password, phone, user_type }) {
 				phone: phone,
 			};
 
-			let response = call_api(endpoint, body, config);
+			let response = post_api(endpoint, body, config);
 			return resolve(response);
 		} catch (err) {
 			return reject(err);
@@ -45,7 +45,7 @@ function login({ email, password }) {
 				password: password,
 			};
 
-			let response = call_api(endpoint, body, config);
+			let response = post_api(endpoint, body, config);
 			return resolve(response);
 		} catch (err) {
 			return reject(err);
@@ -67,7 +67,7 @@ function verify(otp) {
 				code: otp,
 			};
 
-			let response = call_api(endpoint, body, config);
+			let response = post_api(endpoint, body, config);
 			return resolve(response);
 		} catch (err) {
 			return reject(err);
@@ -95,8 +95,150 @@ function getPrograms() {
 		}
 	});
 }
+function getProgramById(id) {
+	return new Promise(function(resolve, reject) {
+		try {
+			const token = localStorage.getItem('user-token');
+			let config = {
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json',
+					Authorization: `Bearer ${token}`,
+				},
+			};
 
-async function call_api(endpoint, body, config) {
+			let endpoint = `programs/${id}`;
+
+			let response = get_api(endpoint, config);
+			return resolve(response);
+		} catch (err) {
+			return reject(err);
+		}
+	});
+}
+
+function addReview(form) {
+	return new Promise(function(resolve, reject) {
+		try {
+			const token = localStorage.getItem('user-token');
+			let config = {
+				headers: {
+					'Content-Type': 'multipart/form-data',
+					Authorization: `Bearer ${token}`,
+				},
+			};
+			const formData = new FormData();
+			Object.keys(form).forEach((key) => {
+				formData.append(key, form[key]);
+			});
+
+			let endpoint = 'reviews';
+
+			let response = post_api(endpoint, formData, config);
+			return resolve(response);
+		} catch (err) {
+			return reject(err);
+		}
+	});
+}
+function addCourse({ title, cost, location, duration, description, program }) {
+	return new Promise(function(resolve, reject) {
+		try {
+			const token = localStorage.getItem('user-token');
+			let config = {
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${token}`,
+				},
+			};
+			const body = {
+				title: title,
+				average_cost: cost,
+				duration: duration,
+				description: description,
+				program: program,
+				location: location,
+			};
+
+			let endpoint = 'course';
+
+			let response = post_api(endpoint, body, config);
+			return resolve(response);
+		} catch (err) {
+			return reject(err);
+		}
+	});
+}
+
+function getReviews(id) {
+	return new Promise(function(resolve, reject) {
+		try {
+			const token = localStorage.getItem('user-token');
+			let config = {
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json',
+					Authorization: `Bearer ${token}`,
+				},
+			};
+
+			let endpoint = `reviews/${id}`;
+
+			let response = get_api(endpoint, config);
+			return resolve(response);
+		} catch (err) {
+			return reject(err);
+		}
+	});
+}
+
+function getResources(id) {
+	return new Promise(function(resolve, reject) {
+		try {
+			const token = localStorage.getItem('user-token');
+			let config = {
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json',
+					Authorization: `Bearer ${token}`,
+				},
+			};
+
+			let endpoint = `resources/${id}`;
+
+			let response = get_api(endpoint, config);
+			return resolve(response);
+		} catch (err) {
+			return reject(err);
+		}
+	});
+}
+function postProfile(form) {
+	return new Promise(function(resolve, reject) {
+		try {
+			const token = localStorage.getItem('user-token');
+			let config = {
+				headers: {
+					'Content-Type': 'multipart/form-data',
+					Authorization: `Bearer ${token}`,
+				},
+			};
+			const formData = new FormData();
+			Object.keys(form).forEach((key) => {
+				formData.append(key, form[key]);
+			});
+
+			let endpoint = 'organizations';
+
+			let response = post_api(endpoint, formData, config);
+			return resolve(response);
+		} catch (err) {
+			return reject(err);
+		}
+	});
+}
+
+async function post_api(endpoint, body, config) {
 	return new Promise(function(resolve, reject) {
 		axios
 			.post(api_url + endpoint, body, config)
@@ -135,4 +277,15 @@ async function get_api(endpoint, config) {
 	});
 }
 
-export { register, login, verify, getPrograms };
+export {
+	register,
+	login,
+	verify,
+	getPrograms,
+	getProgramById,
+	addReview,
+	addCourse,
+	getReviews,
+	getResources,
+	postProfile,
+};

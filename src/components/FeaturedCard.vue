@@ -4,28 +4,27 @@
 			<div class="logo--card"><v-img :src="KingsLogo" class="position-relative"></v-img></div>
 		</v-img>
 
-		<v-card-title class="card--title">Kings and Queens Program</v-card-title>
-		<v-card-subtitle class="card--subtitle">Digital Marketing Program</v-card-subtitle>
+		<v-card-title class="card--title">{{ featured.name }}</v-card-title>
+		<v-card-subtitle class="card--subtitle">{{ featured.type }}</v-card-subtitle>
 
 		<v-card-text>
 			<div class="subtitle-1">
-				<span><i class="flaticon-placeholder"/></span>Nairobi, Kenya
+				<span><i class="flaticon-placeholder"/></span>{{ featured.location }}
 			</div>
 		</v-card-text>
-		<v-card-actions>
-			<Button title="Visit Website" class="mx-auto mb-3" />
-		</v-card-actions>
+		<v-card-actions> <Btn class="mx-auto mb-3" href="www.google.com">Visit Website</Btn></v-card-actions>
 	</v-card>
 </template>
 <script>
-import Button from './Button';
+import Btn from './Button';
 import Kings from '../assets/images/Kings.png';
 import KingsLogo from '../assets/images/Kings-Logo.png';
 
 export default {
 	name: 'FeaturedPrograms',
+	props: ['featured'],
 	components: {
-		Button,
+		Btn,
 	},
 	data: () => ({
 		Kings,

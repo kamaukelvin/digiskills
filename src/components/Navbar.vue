@@ -20,19 +20,19 @@
 			<div class="nav__icons">
 				<span><i class="flaticon-magnifying-glass"/></span>
 
-				<Button title="Logout" />
+				<Btn>Logout</Btn>
 			</div>
 		</div>
 	</div>
 </template>
 <script>
 import Logo from '../assets/images/Logo.png';
-import Button from './Button';
+import Btn from './Button';
 import { AUTH_LOGOUT } from '../store/actions/auth';
 export default {
 	name: 'Navbar',
 	components: {
-		Button,
+		Btn,
 	},
 	data() {
 		return {
@@ -64,7 +64,7 @@ ul li {
 	border-bottom: 4px solid #00b1bc;
 	position: sticky;
 	top: 0;
-	z-index: 1000;
+	z-index: 110;
 }
 .navbar {
 	display: flex;

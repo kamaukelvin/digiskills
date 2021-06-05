@@ -52,16 +52,19 @@
 				</div>
 			</div>
 		</div>
+		<ProfileDialog :visible="showProfileDialog" @close="showProfileDialog = false" />
 		<Partners />
 		<Footer />
 	</div>
 </template>
 <script>
+import { mapGetters } from 'vuex';
 import Navbar from '../components/Navbar';
 import Partners from '../components/Partners';
 import Footer from '../components/Footer';
 import Map from '../components/Map';
 import Skills from '../components/Skills';
+import ProfileDialog from '../components/dialogs/ProfileDialog';
 
 export default {
 	name: 'Home',
@@ -71,9 +74,11 @@ export default {
 		Footer,
 		Map,
 		Skills,
+		ProfileDialog,
 	},
 	data() {
 		return {
+			showProfileDialog: false,
 			value: 0,
 			fruits: 0,
 			ticksLabels: ['2017', '2018', '2019', '2020', '2021'],
@@ -92,6 +97,14 @@ export default {
 				},
 			],
 		};
+	},
+	mounted() {
+		if (this.isInstitution) {
+			this.showProfileDialog = true;
+		}
+	},
+	computed: {
+		...mapGetters(['isInstitution']),
 	},
 };
 </script>

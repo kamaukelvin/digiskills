@@ -8,7 +8,7 @@
 				<BreadCrumbs />
 				<div>
 					<a href="#" class="resources--link"
-						>Add a program <span><i class="flaticon-plus"/></span
+						>Add a resource <span><i class="flaticon-plus"/></span
 					></a>
 				</div>
 			</div>

@@ -171,7 +171,7 @@ import Logo from '../assets/images/Logo.png';
 import Amico from '../assets/images/amico.png';
 import Password from 'vue-password-strength-meter';
 import { REG_REQUEST } from '../store/actions/auth';
-import OtpDialog from '../components/OtpDialog';
+import OtpDialog from '../components/dialogs/OtpDialog';
 // import { initFbsdk } from '@/config/facebook_oAuth.js';
 export default {
 	name: 'Register',
@@ -242,7 +242,7 @@ export default {
 		},
 	},
 	computed: {
-		...mapGetters(['isLoading']),
+		...mapGetters(['isLoading','isInstitution']),
 	},
 };
 </script>

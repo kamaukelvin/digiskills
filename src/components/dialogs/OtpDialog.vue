@@ -45,7 +45,7 @@
 </template>
 <script>
 import { mapGetters } from 'vuex';
-import { VERIFY_REQUEST } from '../store/actions/auth';
+import { VERIFY_REQUEST } from '../../store/actions/auth';
 
 export default {
 	name: 'OtpDialog',

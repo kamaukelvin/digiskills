@@ -1,5 +1,8 @@
 <template>
-	<div class="bg">
+	<div v-if="isProgramsLoaded">
+		<PageLoader />
+	</div>
+	<div class="bg" v-else>
 		<Navbar />
 		<div class="program--banner">
 			<div class="profile">
@@ -7,9 +10,9 @@
 			</div>
 		</div>
 		<div class="container">
-			<TopCard />
-			<About />
-			<Tabs />
+			<TopCard :details="getSingleProgram" />
+			<About :details="getSingleProgram" />
+			<Tabs :details="getSingleProgram" :reviews="getReviews" />
 			<section class="">
 				<h3 class="title my-5">Awards and Recognition</h3>
 				<carousel :items="3" :dots="false" class="">
@@ -20,7 +23,7 @@
 				<h3 class="title my-5">Related Programs</h3>
 				<ProgramCard v-for="(item, i) in 5" :key="i" />
 				<div class="d-flex justify-content-center align-items-center my-4">
-					<Button title="Show more" />
+					<Btn>Show More</Btn>
 				</div>
 			</section>
 		</div>
@@ -29,6 +32,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import carousel from 'vue-owl-carousel';
 import TopCard from '../components/TopCard';
 import Navbar from '../components/Navbar';
@@ -36,8 +40,11 @@ import About from '../components/About';
 import Tabs from '../components/Tabs';
 import AwardsCard from '../components/AwardsCard';
 import ProgramCard from '../components/ProgramCard';
-import Button from '../components/Button';
+import Btn from '../components/Button';
 import Footer from '../components/Footer';
+import PageLoader from '../components/loaders/PageLoader';
+import { SINGLE_PROGRAM_REQUEST } from '../store/actions/programs';
+import { REVIEWS_REQUEST } from '../store/actions/reviews';
 
 export default {
 	name: 'ProgramDetails',
@@ -49,8 +56,16 @@ export default {
 		AwardsCard,
 		carousel,
 		ProgramCard,
-		Button,
+		Btn,
 		Footer,
+		PageLoader,
+	},
+	async mounted() {
+		await this.$store.dispatch(SINGLE_PROGRAM_REQUEST, this.$route.params.id);
+		await this.$store.dispatch(REVIEWS_REQUEST, this.$route.params.id);
+	},
+	computed: {
+		...mapGetters(['isProgramsLoaded', 'getSingleProgram', 'getReviews']),
 	},
 };
 </script>

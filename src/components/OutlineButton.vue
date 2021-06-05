@@ -1,13 +1,29 @@
 <template>
 	<div>
-		<button class="outline__button btn btn-md">{{ title }}</button>
+		<component :is="type" :href="href" :to="to" class="outline__button btn btn-md"><slot /></component>
 	</div>
 </template>
 <script>
 export default {
 	name: 'OutlineButton',
 	props: {
-		title: String,
+		href: {
+			type: String,
+			default: null,
+		},
+		to: {
+			type: String,
+			default: null,
+		},
+	},
+	computed: {
+		type() {
+			if (this.href) {
+				return 'a';
+			} else if (this.to) {
+				return 'router-link';
+			} else return 'button';
+		},
 	},
 };
 </script>

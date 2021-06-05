@@ -8,18 +8,22 @@
 		<div class="container">
 			<Search />
 			<div class="featured--header">
-				<BreadCrumbs />
+				<h6>Top featured programs <span class=""> | Eastern Africa</span></h6>
 				<div>
-					<a href="#" class="program--link"
+					<CourseDialog :visible="showCourseDialog" @close="showCourseDialog = false" />
+					<a href="#" class="program--link" @click="showCourseDialog = true"
 						>Add a program <span><i class="flaticon-plus"/></span
 					></a>
 				</div>
 			</div>
-			<carousel :items="3" :dots="false" :nav="false" class="carousel">
+			<div v-if="isFeatured.length === 0">
+				<p class="text-center">No Featured Programs</p>
+			</div>
+			<carousel v-else :items="3" :dots="false" :nav="false" class="carousel">
 				<template slot="prev"
 					><span class="prevCarousel" id="prev"> <i class="flaticon-previous"/></span
 				></template>
-				<FeaturedCard v-for="(item, i) in 5" :key="i" />
+				<FeaturedCard v-for="featured in isFeatured" :key="featured.id" :featured="featured" />
 				<template slot="next"
 					><span class="nextCarousel" id="next"> <i class="flaticon-next"/></span
 				></template>
@@ -34,7 +38,7 @@
 				<ProgramCard v-for="program in getPrograms" :key="program.id" :program="program" />
 			</section>
 			<div class="d-flex justify-content-center align-items-center my-4">
-				<Button title="Show more" />
+				<Btn>Show more</Btn>
 			</div>
 		</div>
 		<Footer />
@@ -50,10 +54,10 @@ import Search from '../components/Search';
 import FeaturedCard from '../components/FeaturedCard';
 import ProgramCard from '../components/ProgramCard';
 import Footer from '../components/Footer';
-import BreadCrumbs from '../components/BreadCrumbs';
-import Button from '../components/Button';
+import Btn from '../components/Button';
 import PageLoader from '../components/loaders/PageLoader';
 import { PROGRAMS_REQUEST } from '../store/actions/programs';
+import CourseDialog from '../components/dialogs/CourseDialog';
 export default {
 	name: 'Programs',
 	components: {
@@ -64,19 +68,19 @@ export default {
 		Banner,
 		Footer,
 		carousel,
-		BreadCrumbs,
-		Button,
+		Btn,
 		PageLoader,
+		CourseDialog,
 	},
 	data() {
-		return { loading: false };
+		return { loading: false, showCourseDialog: false };
 	},
 
 	async mounted() {
 		await this.$store.dispatch(PROGRAMS_REQUEST);
 	},
 	computed: {
-		...mapGetters(['getPrograms']),
+		...mapGetters(['getPrograms', 'isFeatured']),
 	},
 };
 </script>
@@ -85,6 +89,7 @@ export default {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	margin-top: 25px;
 }
 
 .program--link {
@@ -112,10 +117,15 @@ export default {
 	justify-content: space-between;
 	padding: 20px 0;
 }
-.all--programs--header h6 {
+.all--programs--header h6,
+.featured--header h6 {
 	color: #000;
 	font-weight: 700;
 	font-size: 16px;
+}
+.featured--header h6 > span {
+	color: #00b1bc;
+	font-style: italic;
 }
 .carousel {
 	padding: 0 4em;

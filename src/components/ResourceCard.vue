@@ -17,7 +17,7 @@
 		</div>
 		<div class="card-footer">
 			<small class="resource--date">Apr 2021</small>
-			<a href="#" class="resource--link">Read More</a>
+			<router-link to="/resources/1" class="resource--link">Read More</router-link>
 		</div>
 	</div>
 </template>

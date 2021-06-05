@@ -9,10 +9,9 @@
 				</div>
 				<div class="col-md-10">
 					<span class="float-md-right "><i class="pr-2 flaticon-vector1" />{{ program.availabilty }}</span>
-					<router-link to="/programs/1">
-						<h4 class="card--title mb-0">{{ program.name }}</h4>
-						<h5 class="card--subtitle pb-0 mb-0">{{ program.type }}</h5>
-					</router-link>
+
+					<h4 class="card--title mb-0">{{ program.name }}</h4>
+					<h5 class="card--subtitle pb-0 mb-0">{{ program.type }}</h5>
 					<p class="subtitle-1">
 						<span><i class="flaticon-placeholder"/></span> {{ program.location }}
 					</p>
@@ -40,8 +39,8 @@
 							small
 						></v-rating>
 
-						<Button title="Visit website" class="float-right" />
-						<OutlineButton title="View Program" class="float-right mr-md-3" />
+						<Btn class="float-right">Visit website</Btn>
+						<OutlineButton to="/programs/1" class="float-right mr-md-3">View Program</OutlineButton>
 					</div>
 				</div>
 			</div>
@@ -49,7 +48,7 @@
 	</div>
 </template>
 <script>
-import Button from './Button';
+import Btn from './Button';
 import OutlineButton from './OutlineButton';
 import DigitalSkillsLogo from '../assets/images/DigitalSkills-Logo.png';
 
@@ -57,7 +56,7 @@ export default {
 	name: 'ProgramCard',
 	props: ['program'],
 	components: {
-		Button,
+		Btn,
 		OutlineButton,
 	},
 
@@ -65,6 +64,7 @@ export default {
 		rating: 4.5,
 		DigitalSkillsLogo,
 	}),
+	methods: {},
 };
 </script>
 <style scoped>

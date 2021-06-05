@@ -1,6 +1,7 @@
 <template>
-	<v-row>
-		<v-col v-for="(item, i) in items" :key="i" cols="12">
+	<div v-if="reviews.length === 0"><p class="text-center">No reviews currently for this program</p></div>
+	<v-row v-else>
+		<v-col v-for="(item, i) in reviews" :key="i" cols="12">
 			<v-card>
 				<div class="d-flex flex-no-wrap">
 					<v-avatar class="m-3" size="135" tile>
@@ -31,11 +32,13 @@
 				</v-card-actions>
 			</v-card>
 		</v-col>
+		<div>{{ reviews }}</div>
 	</v-row>
 </template>
 <script>
 export default {
 	name: 'ReviewCard',
+	props: ['reviews'],
 	data: () => ({
 		items: [
 			{

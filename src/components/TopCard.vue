@@ -2,15 +2,18 @@
 	<div class="card program--top--card">
 		<div class="card-body">
 			<h3 class="top--card--title">
-				Digital Skills Program
+				{{ details.program.name }}
 			</h3>
 			<ul class="top--card--list">
-				<li>Start-Up</li>
-				<li>Available Online</li>
-				<li>Nairobi, Kenya</li>
-				<li>4</li>
+				<li>{{ details.program.type }}</li>
+				<li>{{ details.program.availabilty }}</li>
+				<li>{{ details.program.location }}</li>
+				<li>
+					<span><i class="flaticon-star"/></span>4
+				</li>
 			</ul>
-			<ul class="chip--list">
+			<div v-if="details.courses.length === 0"><p>No Courses available for this program</p></div>
+			<ul v-else class="chip--list">
 				<li>
 					<v-chip class="ma-2 top--card--chips" small label color="#00b1bc" text-color="#fff">
 						SEO
@@ -48,15 +51,17 @@
 					<span><i class="flaticon-world"></i></span>www.digiskills254.com
 				</li>
 			</ul>
-			<Button title="Visit Website" />
-		</div></div
-></template>
+			<Btn>Visit Website</Btn>
+		</div>
+	</div></template
+>
 <script>
-import Button from './Button';
+import Btn from './Button';
 export default {
 	name: 'TopCard',
+	props: ['details'],
 	components: {
-		Button,
+		Btn,
 	},
 };
 </script>
@@ -84,8 +89,9 @@ ul {
 .top--card--list li:nth-child(1n + 2):not(:last-child) {
 	color: #00b1bc;
 }
-.top--card--list li:last-child {
-	color: red;
+.top--card--list li:last-child span {
+	color: #f4b223;
+	padding-right: 10px;
 }
 .top--card--chips {
 	text-transform: uppercase;

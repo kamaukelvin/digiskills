@@ -18,12 +18,16 @@ const state = {
 	status: '',
 	hasLoadedOnce: false,
 	loading: false,
+	userData: {},
 };
 
 const getters = {
 	isAuthenticated: (state) => !!state.token,
 	isLoading: (state) => state.loading,
 	authStatus: (state) => state.status,
+	isInstitution: (state) => {
+		if (state.userData === 'institution') return true;
+	},
 };
 
 const actions = {
@@ -49,7 +53,6 @@ const actions = {
 				.then((resp) => {
 					localStorage.setItem('user-token', resp.access_token);
 					commit(AUTH_SUCCESS, resp);
-					// dispatch(USER_REQUEST);
 					resolve(resp);
 				})
 				.catch(async (err) => {
@@ -109,6 +112,7 @@ const mutations = {
 	[AUTH_SUCCESS]: (state, resp) => {
 		state.status = 'success';
 		state.token = resp.token;
+		state.userData = resp.user;
 		state.hasLoadedOnce = true;
 		state.loading = false;
 	},

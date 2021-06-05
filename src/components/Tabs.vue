@@ -11,45 +11,51 @@
 				</v-tabs>
 			</v-toolbar>
 		</v-card>
+		<Review :visible="showReviewDialog" @close="showReviewDialog = false" />
 		<v-tabs-items v-model="tab" class="bg-transparent">
 			<v-tab-item class="">
 				<h3 class="title my-4">What you need to know</h3>
 				<v-expansion-panels>
 					<v-expansion-panel v-for="item in expansions" :key="item.title">
 						<v-expansion-panel-header class="expansion--title"
-							><span><i class="icon-Vector4"/></span>{{ item.title }}</v-expansion-panel-header
+							><span><i :class="item.icon" class="mr-2"/></span>{{ item.title }}</v-expansion-panel-header
 						>
 						<v-expansion-panel-content class="tabs--content">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-							labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-							laboris nisi ut aliquip ex ea commodo consequat.
+							{{ item.contents }}
 						</v-expansion-panel-content>
 					</v-expansion-panel>
 				</v-expansion-panels>
 			</v-tab-item>
 			<v-tab-item class="">
 				<div class="reviews--header">
-					<h3 class="title">21 alumni testimonials</h3>
+					<h3 class="title">{{ this.reviews.length }} alumni testimonials</h3>
+
 					<div>
-						<a href="#" class="submit--link"
+						<a class="submit--link" @click="showReviewDialog = true"
 							>Submit a review <span><i class="flaticon-plus"/></span
 						></a>
 					</div>
 				</div>
-				<ReviewCard />
+				<ReviewCard :reviews="reviews" />
 			</v-tab-item>
 		</v-tabs-items>
 	</div>
 </template>
 <script>
 import ReviewCard from './ReviewCard';
+import Review from '../components/dialogs/Review';
 export default {
 	name: 'Tabs',
 	components: {
 		ReviewCard,
+		Review,
 	},
+	props: ['reviews', 'details'],
 	data() {
+		console.log('PROGRAM DETAILS HAPA', this.details);
 		return {
+			showReviewDialog: false,
+
 			tab: null,
 			items: ['Details', 'Reviews'],
 			text:
@@ -57,36 +63,43 @@ export default {
 			expansions: [
 				{
 					title: 'Location',
-					icon: 'icon-Vector4',
-					contents: '',
+					icon: 'icon-location',
+					contents: `${this.details.program.location}`,
 				},
 				{
 					title: 'Courses',
-					contents: '',
+					icon: 'icon-course',
+					contents: `${this.details.courses}`,
 				},
 				{
 					title: 'Program availability',
-					contents: '',
+					icon: 'icon-program',
+					contents: `${this.details.program.availabilty}`,
 				},
 				{
 					title: 'Age requirement',
-					contents: '',
+					icon: 'icon-age',
+					contents: `${this.details.program.age_requirements}`,
 				},
 				{
 					title: 'Participation guidelines ',
-					contents: '',
+					icon: 'icon-guidelines',
+					contents: `${this.details.program.partcipation_guidelines}`,
 				},
 				{
 					title: 'Qualifications and experience',
-					contents: '',
+					icon: 'icon-qualifications',
+					contents: `${this.details.program.exprience}`,
 				},
 				{
 					title: 'Application details',
-					contents: '',
+					icon: 'icon-details',
+					contents: `${this.details.program.application_details}`,
 				},
 				{
 					title: 'Additional information',
-					contents: '',
+					icon: 'icon-information',
+					contents: `${this.details.program.additional_requirements}`,
 				},
 			],
 		};
@@ -94,6 +107,9 @@ export default {
 };
 </script>
 <style scoped>
+.v-expansion-panel-header > :not(.v-expansion-panel-header__icon) {
+	flex: 0;
+}
 .tabs--card {
 	border-radius: 10px;
 }
