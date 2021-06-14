@@ -55,7 +55,7 @@
 								name="user_type"
 								v-validate="'required'"
 								:class="{ 'is-invalid': submitted && errors.has('user_type') }"
-								v-model="formData.user_type"
+								v-model="getNewUser.user_type"
 							>
 								<option value="institution">Register a Program</option>
 								<option value="reviewer">Review a program</option>
@@ -72,7 +72,7 @@
 								class="form-control"
 								v-validate="'required|email'"
 								:class="{ 'is-invalid': submitted && errors.has('email') }"
-								v-model="formData.email"
+								v-model="getNewUser.email"
 								id="email"
 							/>
 							<div v-if="submitted && errors.has('email')" class="invalid-feedback">
@@ -87,10 +87,10 @@
 								class="form-control"
 								v-validate="'required'"
 								:class="{ 'is-invalid': submitted && errors.has('full_name') }"
-								v-model="formData.full_name"
+								v-model="getNewUser.full_name"
 								id="full_name"
 							/>
-							<div v-if="submitted && errors.has('name')" class="invalid-feedback">
+							<div v-if="submitted && errors.has('full_name')" class="invalid-feedback">
 								{{ errors.first('full_name') }}
 							</div>
 						</div>
@@ -102,7 +102,7 @@
 								name="phone"
 								v-validate="'required'"
 								:class="{ 'is-invalid': submitted && errors.has('phone') }"
-								v-model="formData.phone"
+								v-model="getNewUser.phone"
 							/>
 							<div v-if="submitted && errors.has('phone')" class="invalid-feedback">
 								{{ errors.first('phone') }}
@@ -117,9 +117,9 @@
 								name="password"
 								v-validate="'required'"
 								:class="{ 'is-invalid': submitted && errors.has('password') }"
-								v-model="formData.password"
+								v-model="getNewUser.password"
 							/>
-							<password v-model="formData.password" :strength-meter-only="true" />
+							<password v-model="getNewUser.password" :strength-meter-only="true" />
 							<div v-if="submitted && errors.has('password')" class="invalid-feedback">
 								{{ errors.first('password') }}
 							</div>
@@ -131,7 +131,7 @@
 								id="terms"
 								name="terms"
 								:class="{ 'is-invalid': submitted && errors.has('terms') }"
-								v-model="formData.terms"
+								v-model="getNewUser.terms"
 								v-validate="'required:true'"
 							/>
 							<label class="form-check-label" for="terms"
@@ -186,7 +186,6 @@ export default {
 			Amico,
 			submitted: false,
 			showOtp: false,
-			formData: { email: '', password: '', full_name: '', phone: '', user_type: '', terms: '' },
 		};
 	},
 	methods: {
@@ -201,7 +200,7 @@ export default {
 			this.$validator.validate().then(async (valid) => {
 				if (valid) {
 					this.$store
-						.dispatch(REG_REQUEST, this.formData)
+						.dispatch(REG_REQUEST, this.getNewUser)
 						.then(() => {
 							this.showOtp = true;
 						})
@@ -242,7 +241,7 @@ export default {
 		},
 	},
 	computed: {
-		...mapGetters(['isLoading','isInstitution']),
+		...mapGetters(['isLoading', 'isInstitution', 'getNewUser']),
 	},
 };
 </script>

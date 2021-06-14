@@ -1,7 +1,7 @@
 import { handle_api_error } from './errorHandler';
 import axios from 'axios';
 
-let api_url = 'http://178.62.120.221:86/api/v1/';
+let api_url = 'http://digi-skills.herokuapp.com/api/v1/';
 
 function register({ full_name, email, password, phone, user_type }) {
 	return new Promise(function(resolve, reject) {
@@ -169,6 +169,30 @@ function addCourse({ title, cost, location, duration, description, program }) {
 		}
 	});
 }
+function addProgram(form) {
+	return new Promise(function(resolve, reject) {
+		try {
+			const token = localStorage.getItem('user-token');
+			let config = {
+				headers: {
+					'Content-Type': 'multipart/form-data',
+					Authorization: `Bearer ${token}`,
+				},
+			};
+			const formData = new FormData();
+			Object.keys(form).forEach((key) => {
+				formData.append(key, form[key]);
+			});
+
+			let endpoint = 'organizations';
+
+			let response = post_api(endpoint, formData, config);
+			return resolve(response);
+		} catch (err) {
+			return reject(err);
+		}
+	});
+}
 
 function getReviews(id) {
 	return new Promise(function(resolve, reject) {
@@ -192,7 +216,7 @@ function getReviews(id) {
 	});
 }
 
-function getResources(id) {
+function getResources() {
 	return new Promise(function(resolve, reject) {
 		try {
 			const token = localStorage.getItem('user-token');
@@ -204,7 +228,7 @@ function getResources(id) {
 				},
 			};
 
-			let endpoint = `resources/${id}`;
+			let endpoint = `add-resources`;
 
 			let response = get_api(endpoint, config);
 			return resolve(response);
@@ -231,6 +255,34 @@ function postProfile(form) {
 			let endpoint = 'organizations';
 
 			let response = post_api(endpoint, formData, config);
+			return resolve(response);
+		} catch (err) {
+			return reject(err);
+		}
+	});
+}
+function addResource({ title, author_name, institution, text }) {
+	return new Promise(function(resolve, reject) {
+		try {
+			const token = localStorage.getItem('user-token');
+			let config = {
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json',
+					Authorization: `Bearer ${token}`,
+				},
+			};
+			const body = {
+				title: title,
+				author_name: author_name,
+				institution: institution,
+				text: text,
+				date: new Date(),
+			};
+
+			let endpoint = 'resources';
+
+			let response = post_api(endpoint, body, config);
 			return resolve(response);
 		} catch (err) {
 			return reject(err);
@@ -288,4 +340,6 @@ export {
 	getReviews,
 	getResources,
 	postProfile,
+	addProgram,
+	addResource,
 };

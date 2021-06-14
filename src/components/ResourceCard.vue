@@ -3,27 +3,24 @@
 		<div class="card-body">
 			<router-link to="/resources/1">
 				<h3 class="card--title">
-					New Trends in UX 2021: What the UI/UX revolution means for designer
+					{{ resource.title }}
 				</h3>
-				<h4 class="card--subtitle">Barbara Kimosop - University of Nairobi</h4>
+				<h4 class="card--subtitle">{{ resource.author_name }} - {{ resource.institution }}</h4>
 			</router-link>
 			<div class="resource--excerpt">
-				Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-				industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-				scrambled. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-				been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-				type and scrambled.
+				{{ resource.text }}
 			</div>
 		</div>
 		<div class="card-footer">
-			<small class="resource--date">Apr 2021</small>
-			<router-link to="/resources/1" class="resource--link">Read More</router-link>
+			<small class="resource--date">{{ resource.date }}</small>
+			<router-link :to="`/resources/${resource.id}`" class="resource--link">Read More</router-link>
 		</div>
 	</div>
 </template>
 <script>
 export default {
 	name: 'ResourceCard',
+	props: ['resource'],
 };
 </script>
 <style scoped>

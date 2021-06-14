@@ -2,7 +2,7 @@
 	<div class="card program--top--card">
 		<div class="card-body">
 			<h3 class="top--card--title">
-				{{ details.program.name }}
+				{{ details.program.program_name }}
 			</h3>
 			<ul class="top--card--list">
 				<li>{{ details.program.type }}</li>
@@ -42,16 +42,16 @@
 			</ul>
 			<ul class="contacts">
 				<li>
-					<span><i class="flaticon-phone"></i></span>+254-770-454-889
+					<span><i class="flaticon-phone"></i></span>{{ details.organizations[0].phone }}
 				</li>
 				<li>
-					<span><i class="flaticon-envelope"></i></span>digiskills254@gmail.com
+					<span><i class="flaticon-envelope"></i></span>{{ details.organizations[0].email }}
 				</li>
 				<li>
-					<span><i class="flaticon-world"></i></span>www.digiskills254.com
+					<span><i class="flaticon-world"></i></span>{{ details.organizations[0].website }}
 				</li>
 			</ul>
-			<Btn>Visit Website</Btn>
+			<Btn :href="details.organizations[0].website">Visit Website</Btn>
 		</div>
 	</div></template
 >

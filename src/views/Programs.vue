@@ -5,20 +5,26 @@
 	<div class="bg" v-else>
 		<Navbar />
 		<Banner />
+		<div>{{ getPrograms }}</div>
 		<div class="container">
 			<Search />
 			<div class="featured--header">
 				<h6>Top featured programs <span class=""> | Eastern Africa</span></h6>
 				<div>
-					<CourseDialog :visible="showCourseDialog" @close="showCourseDialog = false" />
-					<a href="#" class="program--link" @click="showCourseDialog = true"
+					<ProgramDialog :visible="showProgramDialog" @close="showProgramDialog = false" />
+					<a v-if="isInstitution" href="#" class="program--link" @click="showProgramDialog = true"
 						>Add a program <span><i class="flaticon-plus"/></span
 					></a>
 				</div>
 			</div>
 			<div v-if="isFeatured.length === 0">
-				<p class="text-center">No Featured Programs</p>
+				<div class="card empty--card">
+					<div class="card-body">
+						<p class="text-center">No Featured Programs</p>
+					</div>
+				</div>
 			</div>
+
 			<carousel v-else :items="3" :dots="false" :nav="false" class="carousel">
 				<template slot="prev"
 					><span class="prevCarousel" id="prev"> <i class="flaticon-previous"/></span
@@ -35,11 +41,18 @@
 						Sort by:
 					</div>
 				</div>
-				<ProgramCard v-for="program in getPrograms" :key="program.id" :program="program" />
+				<div v-if="getPrograms.length === 0" class="card empty--card">
+					<div class="card-body">
+						<p class="text-center">No Programs</p>
+					</div>
+				</div>
+				<div v-else>
+					<ProgramCard v-for="program in getPrograms" :key="program.id" :program="program" />
+					<div class="d-flex justify-content-center align-items-center my-4">
+						<Btn>Show more</Btn>
+					</div>
+				</div>
 			</section>
-			<div class="d-flex justify-content-center align-items-center my-4">
-				<Btn>Show more</Btn>
-			</div>
 		</div>
 		<Footer />
 	</div>
@@ -57,7 +70,7 @@ import Footer from '../components/Footer';
 import Btn from '../components/Button';
 import PageLoader from '../components/loaders/PageLoader';
 import { PROGRAMS_REQUEST } from '../store/actions/programs';
-import CourseDialog from '../components/dialogs/CourseDialog';
+import ProgramDialog from '../components/dialogs/ProgramDialog';
 export default {
 	name: 'Programs',
 	components: {
@@ -70,17 +83,18 @@ export default {
 		carousel,
 		Btn,
 		PageLoader,
-		CourseDialog,
+		ProgramDialog,
 	},
 	data() {
-		return { loading: false, showCourseDialog: false };
+		return { loading: false, showProgramDialog: false };
 	},
 
 	async mounted() {
+		console.log('IS IS INSTITUTION', this.isInstitution);
 		await this.$store.dispatch(PROGRAMS_REQUEST);
 	},
 	computed: {
-		...mapGetters(['getPrograms', 'isFeatured']),
+		...mapGetters(['getPrograms', 'isFeatured', 'isInstitution']),
 	},
 };
 </script>

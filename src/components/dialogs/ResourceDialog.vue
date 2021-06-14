@@ -3,66 +3,47 @@
 		<v-dialog v-model="show" persistent max-width="650">
 			<v-card>
 				<v-card-title class="">
-					Add Course<v-btn class="ml-auto" icon @click="show = false">
+					Add Resource<v-btn class="ml-auto" icon @click="show = false">
 						<v-icon>mdi-close</v-icon>
 					</v-btn>
 				</v-card-title>
 				<v-card-text>
 					<v-form v-model="valid" ref="form">
 						<v-row>
-							<v-col cols="12" md="6">
-								<v-select
-									v-model="form.program"
-									:items="title"
-									:rules="[(v) => !!v || 'Program title is required']"
-									label="Program Title"
-									required
-								></v-select>
-							</v-col>
-							<v-col cols="12" md="6">
-								<v-select
-									v-model="form.title"
-									:items="title"
-									:rules="[(v) => !!v || 'Course title is required']"
-									label="Course Title"
-									required
-								></v-select>
-							</v-col>
-							<v-col cols="12" md="6">
-								<v-select
-									v-model="form.cost"
-									:items="cost"
-									:rules="[(v) => !!v || 'Cost is required']"
-									label="Average Cost"
-									required
-								></v-select>
-							</v-col>
-							<v-col cols="12" md="6">
+							<v-col cols="12" md="12">
 								<v-text-field
-									v-model="form.location"
-									:rules="[(v) => !!v || 'Location is required']"
-									label="Location"
+									v-model="form.title"
+									:rules="[(v) => !!v || 'Resource Title is required']"
+									label="Resource Title"
 									required
 								></v-text-field>
 							</v-col>
-							<v-col cols="12" md="6">
-								<v-select
-									v-model="form.duration"
-									:items="duration"
-									:rules="[(v) => !!v || 'Duration is required']"
-									label="Duration"
+
+							<v-col cols="12" md="12">
+								<v-text-field
+									v-model="form.author_name"
+									:rules="[(v) => !!v || 'Author Name is required']"
+									label="Author Name"
 									required
-								></v-select>
+								></v-text-field>
 							</v-col>
 							<v-col cols="12" md="12">
+								<v-text-field
+									v-model="form.institution"
+									:rules="[(v) => !!v || 'Institution is required']"
+									label="Institution Name"
+									required
+								></v-text-field>
+							</v-col>
+
+							<v-col cols="12" md="12">
 								<v-textarea
-									outlined
-									:rules="[(v) => !!v || 'Description is required']"
-									label="Description"
+									:rules="[(v) => !!v || 'Excerpt is required']"
+									label="Excerpt"
 									class="mb-2"
 									required
-									rows="2"
-									v-model="form.description"
+									rows="4"
+									v-model="form.text"
 								></v-textarea>
 							</v-col>
 						</v-row>
@@ -70,10 +51,10 @@
 							type="button"
 							@click="validate"
 							class="mb-3"
-							:disabled="isProgramsLoaded"
+							:disabled="isLoadingResources"
 							color="primary"
 						>
-							<span v-if="isProgramsLoaded"
+							<span v-if="isLoadingResources"
 								>Please wait...<v-progress-circular
 									indeterminate
 									:size="17"
@@ -82,7 +63,7 @@
 									color="white"
 								></v-progress-circular
 							></span>
-							<span v-else> Add Course</span>
+							<span v-else> Add Resource</span>
 						</v-btn>
 					</v-form>
 				</v-card-text>
@@ -92,27 +73,20 @@
 </template>
 <script>
 import { mapGetters } from 'vuex';
-import { ADD_PROGRAM_REQUEST, ADD_PROGRAM_ERROR } from '../../store/actions/programs';
+import { ADD_RESOURCE_REQUEST, ADD_RESOURCE_ERROR } from '../../store/actions/resources';
 
 export default {
-	name: 'CourseDialog',
+	name: 'ResourceDialog',
 	props: ['visible'],
 	data() {
 		return {
 			valid: true,
-			step: 1,
-			program: ['Data Science'],
-			title: ['Data Science'],
-			cost: ['Contact program for cost breakdown'],
-			duration: ['1 - 2 weeks', '2 - 4 weeks'],
 
 			form: {
-				title: null,
-				cost: null,
-				location: '',
-				duration: null,
-				description: '',
-				program: '',
+				title: '',
+				author_name: '',
+				institution: '',
+				text: '',
 			},
 		};
 	},
@@ -129,19 +103,19 @@ export default {
 			if (this.valid)
 				try {
 					// console.log('THE FORM TO COURSE', this.form);
-					await this.$store.dispatch(ADD_PROGRAM_REQUEST, this.form);
+					await this.$store.dispatch(ADD_RESOURCE_REQUEST, this.form);
 					this.show = false;
 				} catch (err) {
 					let error = await err;
 
-					this.$store.dispatch(ADD_PROGRAM_ERROR);
+					this.$store.dispatch(ADD_RESOURCE_ERROR);
 					this.show = false;
 					this.showError(error, 'error');
 				}
 		},
 	},
 	computed: {
-		...mapGetters(['isProgramsLoaded']),
+		...mapGetters(['isLoadingResources']),
 		show: {
 			get() {
 				return this.visible;

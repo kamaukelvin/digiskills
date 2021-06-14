@@ -53,6 +53,7 @@ export default {
 	data() {
 		return { otp: '', otpComplete: false };
 	},
+
 	methods: {
 		showError(message, type) {
 			this.$toast.open({
@@ -65,7 +66,7 @@ export default {
 			this.submitted = true;
 
 			if (this.otpComplete) {
-				console.log('OTP IS COMPLETE RUNNN', this.otp);
+				console.log('OTP IS COMPLETE RUNNN', this.getNewUser);
 				this.$store
 					.dispatch(VERIFY_REQUEST, this.otp)
 					.then(() => {
@@ -94,7 +95,7 @@ export default {
 		},
 	},
 	computed: {
-		...mapGetters(['isLoading']),
+		...mapGetters(['isLoading', 'getNewUser']),
 		show: {
 			get() {
 				return this.visible;

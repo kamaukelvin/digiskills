@@ -40,7 +40,9 @@
 						></v-rating>
 
 						<Btn class="float-right">Visit website</Btn>
-						<OutlineButton to="/programs/1" class="float-right mr-md-3">View Program</OutlineButton>
+						<OutlineButton :to="`/programs/${program.id}`" class="float-right mr-md-3"
+							>View Program</OutlineButton
+						>
 					</div>
 				</div>
 			</div>

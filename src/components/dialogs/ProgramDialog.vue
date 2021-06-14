@@ -3,37 +3,36 @@
 		<v-dialog v-model="show" persistent max-width="650">
 			<v-card>
 				<v-card-title class="">
-					Add Course<v-btn class="ml-auto" icon @click="show = false">
+					Add Program<v-btn class="ml-auto" icon @click="show = false">
 						<v-icon>mdi-close</v-icon>
 					</v-btn>
 				</v-card-title>
 				<v-card-text>
 					<v-form v-model="valid" ref="form">
 						<v-row>
+							<v-col cols="12" md="12">
+								<v-text-field
+									v-model="form.name"
+									:rules="[(v) => !!v || 'Program Name is required']"
+									label="Program Name"
+									required
+								></v-text-field>
+							</v-col>
 							<v-col cols="12" md="6">
 								<v-select
-									v-model="form.program"
+									v-model="form.type"
 									:items="title"
-									:rules="[(v) => !!v || 'Program title is required']"
-									label="Program Title"
+									:rules="[(v) => !!v || 'Program type is required']"
+									label="Program Type"
 									required
 								></v-select>
 							</v-col>
 							<v-col cols="12" md="6">
 								<v-select
-									v-model="form.title"
+									v-model="form.availability"
 									:items="title"
-									:rules="[(v) => !!v || 'Course title is required']"
-									label="Course Title"
-									required
-								></v-select>
-							</v-col>
-							<v-col cols="12" md="6">
-								<v-select
-									v-model="form.cost"
-									:items="cost"
-									:rules="[(v) => !!v || 'Cost is required']"
-									label="Average Cost"
+									:rules="[(v) => !!v || 'Program availbaility is required']"
+									label="Availability"
 									required
 								></v-select>
 							</v-col>
@@ -47,22 +46,70 @@
 							</v-col>
 							<v-col cols="12" md="6">
 								<v-select
-									v-model="form.duration"
+									v-model="form.age_requirements"
 									:items="duration"
-									:rules="[(v) => !!v || 'Duration is required']"
+									:rules="[(v) => !!v || 'Age is required']"
 									label="Duration"
 									required
 								></v-select>
 							</v-col>
+							<v-col cols="12" md="6">
+								<v-select
+									v-model="form.experience"
+									:items="duration"
+									:rules="[(v) => !!v || 'Experience is required']"
+									label="Experience"
+									required
+								></v-select>
+							</v-col>
+							<v-col cols="12" md="6">
+								<v-file-input
+									v-model="form.image"
+									accept="image/*"
+									label="Upload Logo"
+									prepend-icon="mdi-camera"
+									:rules="[(v) => !!v || 'Program Image is required']"
+									class="mb-2"
+									required
+								></v-file-input>
+							</v-col>
 							<v-col cols="12" md="12">
 								<v-textarea
-									outlined
-									:rules="[(v) => !!v || 'Description is required']"
-									label="Description"
+									:rules="[(v) => !!v || 'Quaifications is required']"
+									label="Qualifications"
 									class="mb-2"
 									required
 									rows="2"
-									v-model="form.description"
+									v-model="form.qualifications"
+								></v-textarea>
+							</v-col>
+							<v-col cols="12" md="12">
+								<v-textarea
+									:rules="[(v) => !!v || 'Brief description is required']"
+									label="About the program"
+									class="mb-2"
+									required
+									rows="2"
+									v-model="form.about"
+								></v-textarea>
+							</v-col>
+							<v-col cols="12" md="12">
+								<v-textarea
+									:rules="[(v) => !!v || 'Application details is required']"
+									label="Application Details"
+									class="mb-2"
+									required
+									rows="2"
+									v-model="form.application_details"
+								></v-textarea>
+							</v-col>
+							<v-col cols="12" md="12">
+								<v-textarea
+									:rules="[(v) => !!v || 'Additional requirements are required']"
+									label="Additional requirements"
+									class="mb-2"
+									rows="2"
+									v-model="form.additional_requirements"
 								></v-textarea>
 							</v-col>
 						</v-row>
@@ -82,7 +129,7 @@
 									color="white"
 								></v-progress-circular
 							></span>
-							<span v-else> Add Course</span>
+							<span v-else> Add Program</span>
 						</v-btn>
 					</v-form>
 				</v-card-text>

@@ -65,4 +65,8 @@ export default {
 	border: 1px solid #00b1bc;
 	border-radius: 4px;
 }
+.empty--card {
+	min-height: 100px;
+	border-radius: 10px;
+}
 </style>

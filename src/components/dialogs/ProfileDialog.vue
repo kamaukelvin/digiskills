@@ -26,51 +26,27 @@
 									></v-text-field>
 									<v-select
 										v-model="form.category"
-										:items="genders"
+										:items="categories"
 										:rules="[(v) => !!v || 'Category is required']"
 										class="mb-3"
 										label="Category"
 										required
 									></v-select>
-									<v-combobox
-										v-model="form.courses"
-										:items="genders"
-										label="Courses Offered"
-										multiple
-										class="mb-3"
-										:rules="[(v) => !!v || 'Course is required']"
-										chips
-										required
-									>
-										<template v-slot:selection="data">
-											<v-chip
-												:key="JSON.stringify(data.item)"
-												v-bind="data.attrs"
-												:input-value="data.selected"
-												:disabled="data.disabled"
-												close
-												small
-												@click:close="data.parent.selectItem(data.item)"
-											>
-												{{ data.item }}
-											</v-chip>
-										</template>
-									</v-combobox>
+
 									<v-row>
 										<v-col cols="12" md="6">
-											<v-select
+											<v-text-field
 												v-model="form.year_establish"
-												:items="genders"
 												:rules="[(v) => !!v || 'Year is required']"
 												class="mb-3"
 												label="Year Established"
 												required
-											></v-select>
+											></v-text-field>
 										</v-col>
 										<v-col cols="12" md="6">
 											<v-select
 												v-model="form.country_of_operation"
-												:items="genders"
+												:items="countries"
 												:rules="[(v) => !!v || 'Country is required']"
 												class="mb-3"
 												label="Primary Country of Operation"
@@ -100,7 +76,7 @@
 								<v-form ref="formAbout" v-model="valid">
 									<v-select
 										v-model="form.program_duration"
-										:items="genders"
+										:items="durations"
 										:rules="[(v) => !!v || 'Duration is required']"
 										class="mb-3"
 										label="Length of typical Program"
@@ -191,7 +167,7 @@
 									<v-text-field
 										v-model="form.postal_code"
 										:rules="[(v) => !!v || 'Postal Code is required']"
-										label="Postal"
+										label="Postal Code"
 										class="mb-3"
 										required
 									></v-text-field>
@@ -237,6 +213,9 @@ export default {
 			step: 1,
 			gender: null,
 			genders: ['Male', 'Female', 'Other'],
+			categories: ['Start-up'],
+			durations: ['1-3 months', '3-6 months', '6-9 months', '9-12 months'],
+			countries: ['Kenya', 'Egypt', 'South Africa', 'Uganda', 'Tanzania'],
 
 			form: {
 				name: '',

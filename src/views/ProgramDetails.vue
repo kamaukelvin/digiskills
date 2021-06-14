@@ -4,6 +4,7 @@
 	</div>
 	<div class="bg" v-else>
 		<Navbar />
+		<div>{{ getSingleProgram }}</div>
 		<div class="program--banner">
 			<div class="profile">
 				<img src="https://picsum.photos/id/11/500/300" class="profile--picture" />

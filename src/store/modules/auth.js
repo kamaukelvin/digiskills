@@ -19,15 +19,18 @@ const state = {
 	hasLoadedOnce: false,
 	loading: false,
 	userData: {},
+	formData: { email: '', password: '', full_name: '', phone: '', user_type: '', terms: '' },
 };
 
 const getters = {
 	isAuthenticated: (state) => !!state.token,
 	isLoading: (state) => state.loading,
 	authStatus: (state) => state.status,
-	isInstitution: (state) => {
-		if (state.userData === 'institution') return true;
-	},
+	isInstitution: (state) => state.userData,
+	// if (state.userData.user_type === 'institution') {
+	// 	return true;
+	// }
+	getNewUser: (state) => state.formData,
 };
 
 const actions = {
