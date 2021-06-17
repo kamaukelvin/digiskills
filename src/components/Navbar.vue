@@ -41,6 +41,7 @@ export default {
 	},
 	methods: {
 		async logout() {
+			console.log('I have been clicked');
 			await this.$store.dispatch(AUTH_LOGOUT);
 		},
 	},

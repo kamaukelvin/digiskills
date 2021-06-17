@@ -8,7 +8,7 @@
 					</v-btn>
 				</v-card-title>
 				<v-card-text>
-					<v-form v-model="valid" ref="form">
+					<v-form v-model="valid" @submit.prevent="validate" ref="form">
 						<v-row>
 							<v-col cols="12" md="12">
 								<v-text-field
@@ -29,9 +29,9 @@
 							</v-col>
 							<v-col cols="12" md="6">
 								<v-select
-									v-model="form.availability"
-									:items="title"
-									:rules="[(v) => !!v || 'Program availbaility is required']"
+									v-model="form.availabilty"
+									:items="availability"
+									:rules="[(v) => !!v || 'Program availability is required']"
 									label="Availability"
 									required
 								></v-select>
@@ -47,22 +47,13 @@
 							<v-col cols="12" md="6">
 								<v-select
 									v-model="form.age_requirements"
-									:items="duration"
+									:items="age"
 									:rules="[(v) => !!v || 'Age is required']"
-									label="Duration"
+									label="Age Requirements"
 									required
 								></v-select>
 							</v-col>
-							<v-col cols="12" md="6">
-								<v-select
-									v-model="form.experience"
-									:items="duration"
-									:rules="[(v) => !!v || 'Experience is required']"
-									label="Experience"
-									required
-								></v-select>
-							</v-col>
-							<v-col cols="12" md="6">
+							<v-col cols="12" md="12">
 								<v-file-input
 									v-model="form.image"
 									accept="image/*"
@@ -75,12 +66,22 @@
 							</v-col>
 							<v-col cols="12" md="12">
 								<v-textarea
+									v-model="form.exprience"
+									:rules="[(v) => !!v || 'Experience is required']"
+									label="Experience"
+									required
+									rows="2"
+								></v-textarea>
+							</v-col>
+
+							<v-col cols="12" md="12">
+								<v-textarea
 									:rules="[(v) => !!v || 'Quaifications is required']"
 									label="Qualifications"
 									class="mb-2"
 									required
 									rows="2"
-									v-model="form.qualifications"
+									v-model="form.qualification"
 								></v-textarea>
 							</v-col>
 							<v-col cols="12" md="12">
@@ -112,14 +113,17 @@
 									v-model="form.additional_requirements"
 								></v-textarea>
 							</v-col>
+							<v-col cols="12" md="12">
+								<v-textarea
+									:rules="[(v) => !!v || 'Participation guidelines are required']"
+									label="Participation guidelines"
+									class="mb-2"
+									rows="2"
+									v-model="form.partcipation_guidelines"
+								></v-textarea>
+							</v-col>
 						</v-row>
-						<v-btn
-							type="button"
-							@click="validate"
-							class="mb-3"
-							:disabled="isProgramsLoaded"
-							color="primary"
-						>
+						<v-btn type="submit" class="mb-3" :disabled="isProgramsLoaded" color="primary">
 							<span v-if="isProgramsLoaded"
 								>Please wait...<v-progress-circular
 									indeterminate
@@ -151,17 +155,29 @@ export default {
 			program: ['Data Science'],
 			title: ['Data Science'],
 			cost: ['Contact program for cost breakdown'],
+			availability: ['Part Time', 'Full Time', 'Online'],
 			duration: ['1 - 2 weeks', '2 - 4 weeks'],
+			age: ['Below 18 years', '18 -35 years', '35-75 years', 'Over 75 years'],
 
 			form: {
-				title: null,
-				cost: null,
+				name: '',
+				organization_id: '',
+				type: '',
+				availabilty: '',
 				location: '',
-				duration: null,
-				description: '',
-				program: '',
+				image: null,
+				age_requirements: '',
+				partcipation_guidelines: '',
+				qualification: '',
+				exprience: '',
+				about: '',
+				application_details: '',
+				additional_requirements: '',
 			},
 		};
+	},
+	mounted() {
+		this.form.organization_id = this.getUser.id;
 	},
 	methods: {
 		showError(message, type) {
@@ -175,7 +191,6 @@ export default {
 			this.$refs.form.validate();
 			if (this.valid)
 				try {
-					// console.log('THE FORM TO COURSE', this.form);
 					await this.$store.dispatch(ADD_PROGRAM_REQUEST, this.form);
 					this.show = false;
 				} catch (err) {
@@ -188,7 +203,7 @@ export default {
 		},
 	},
 	computed: {
-		...mapGetters(['isProgramsLoaded']),
+		...mapGetters(['isProgramsLoaded', 'getUser']),
 		show: {
 			get() {
 				return this.visible;

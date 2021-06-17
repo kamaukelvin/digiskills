@@ -5,13 +5,12 @@
 	<div class="bg" v-else>
 		<Navbar />
 		<Banner />
-		<div>{{ getPrograms }}</div>
 		<div class="container">
 			<Search />
 			<div class="featured--header">
 				<h6>Top featured programs <span class=""> | Eastern Africa</span></h6>
+
 				<div>
-					<ProgramDialog :visible="showProgramDialog" @close="showProgramDialog = false" />
 					<a v-if="isInstitution" href="#" class="program--link" @click="showProgramDialog = true"
 						>Add a program <span><i class="flaticon-plus"/></span
 					></a>
@@ -55,6 +54,7 @@
 			</section>
 		</div>
 		<Footer />
+		<ProgramDialog :visible="showProgramDialog" @close="showProgramDialog = false" />
 	</div>
 </template>
 <script>

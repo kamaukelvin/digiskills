@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
+import moment from 'moment';
 
 import App from './App.vue';
 import vuetify from './plugins/vuetify';
@@ -36,6 +37,7 @@ Vue.use(VueToast, {
 	position: 'top-right',
 });
 Vue.component('v-otp-input', OtpInput);
+Vue.prototype.moment = moment;
 
 new Vue({
 	vuetify,

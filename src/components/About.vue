@@ -2,7 +2,7 @@
 	<div>
 		<div class="card about--card">
 			<div class="card-body">
-				<h3 class="title">About</h3>
+				<h3 class="title ">About</h3>
 				<p>
 					{{ details.program.about }}
 				</p>

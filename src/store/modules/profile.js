@@ -4,10 +4,12 @@ import { postProfile } from '../../services/apiSrv';
 const state = {
 	loading: false,
 	error: '',
+	profile: {},
 };
 
 const getters = {
 	isLoadingProfile: (state) => state.loading,
+	getProfile: (state) => state.profile,
 };
 
 const actions = {
@@ -33,8 +35,9 @@ const mutations = {
 	[POST_PROFILE_REQUEST]: (state) => {
 		state.loading = true;
 	},
-	[POST_PROFILE_SUCCESS]: (state) => {
+	[POST_PROFILE_SUCCESS]: (state, resp) => {
 		state.loading = false;
+		state.profile = resp.organization;
 	},
 	[POST_PROFILE_ERROR]: (state) => {
 		state.loading = false;

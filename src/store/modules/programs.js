@@ -44,11 +44,13 @@ const actions = {
 			});
 	},
 
-	[ADD_PROGRAM_REQUEST]: ({ commit }, program) => {
+	[ADD_PROGRAM_REQUEST]: ({ commit, dispatch }, program) => {
 		commit(ADD_PROGRAM_REQUEST);
+
 		addProgram(program)
 			.then((resp) => {
 				commit(ADD_PROGRAM_SUCCESS, resp);
+				dispatch(PROGRAMS_REQUEST);
 			})
 			.catch(() => {
 				commit(ADD_PROGRAM_ERROR);

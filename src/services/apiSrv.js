@@ -52,6 +52,29 @@ function login({ email, password }) {
 		}
 	});
 }
+function logout() {
+	return new Promise(function(resolve, reject) {
+		try {
+			const token = localStorage.getItem('user-token');
+			let config = {
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json',
+					Authorization: `Bearer ${token}`,
+				},
+			};
+
+			let endpoint = 'logout';
+
+			const body = {};
+
+			let response = post_api(endpoint, body, config);
+			return resolve(response);
+		} catch (err) {
+			return reject(err);
+		}
+	});
+}
 function verify(otp) {
 	return new Promise(function(resolve, reject) {
 		try {
@@ -184,7 +207,7 @@ function addProgram(form) {
 				formData.append(key, form[key]);
 			});
 
-			let endpoint = 'organizations';
+			let endpoint = 'programs';
 
 			let response = post_api(endpoint, formData, config);
 			return resolve(response);
@@ -332,6 +355,7 @@ async function get_api(endpoint, config) {
 export {
 	register,
 	login,
+	logout,
 	verify,
 	getPrograms,
 	getProgramById,

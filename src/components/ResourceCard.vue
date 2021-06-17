@@ -12,7 +12,7 @@
 			</div>
 		</div>
 		<div class="card-footer">
-			<small class="resource--date">{{ resource.date }}</small>
+			<small class="resource--date">{{ moment(resource.date).format('MMM YYYY') }}</small>
 			<router-link :to="`/resources/${resource.id}`" class="resource--link">Read More</router-link>
 		</div>
 	</div>

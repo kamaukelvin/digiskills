@@ -22,7 +22,7 @@
 										:rules="[(v) => !!v || 'Name is required']"
 										label="Name"
 										class="mb-3"
-										required
+										disabled
 									></v-text-field>
 									<v-select
 										v-model="form.category"
@@ -125,7 +125,7 @@
 										:rules="[(v) => !!v || 'Phone Number is required']"
 										label="Phone Number"
 										class="mb-3"
-										required
+										disabled
 									></v-text-field>
 									<v-text-field
 										v-model="form.email"
@@ -134,7 +134,7 @@
 											(v) => /.+@.+\..+/.test(v) || 'E-mail must be valid',
 										]"
 										label="Email Address"
-										required
+										disabled
 										class="mb-3"
 									></v-text-field>
 									<v-text-field
@@ -207,6 +207,7 @@ import { POST_PROFILE_REQUEST, POST_PROFILE_ERROR } from '../../store/actions/pr
 export default {
 	name: 'Review',
 	props: ['visible'],
+
 	data() {
 		return {
 			valid: true,
@@ -236,6 +237,11 @@ export default {
 				about: 'about',
 			},
 		};
+	},
+	mounted() {
+		this.form.name = this.getUser.name;
+		this.form.email = this.getUser.email;
+		this.form.phone = this.getUser.phone;
 	},
 	methods: {
 		validate() {
@@ -272,7 +278,7 @@ export default {
 		},
 	},
 	computed: {
-		...mapGetters(['isLoadingProfile']),
+		...mapGetters(['isLoadingProfile', 'getUser']),
 
 		show: {
 			get() {

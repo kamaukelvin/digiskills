@@ -59,7 +59,7 @@ const mutations = {
 	},
 	[REVIEWS_SUCCESS]: (state, resp) => {
 		state.loading = false;
-		state.reviews = resp;
+		state.reviews = resp.reviews;
 	},
 	[REVIEWS_ERROR]: (state) => {
 		state.loading = false;

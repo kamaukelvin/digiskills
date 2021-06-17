@@ -2,7 +2,7 @@
 	<div class="card program--top--card">
 		<div class="card-body">
 			<h3 class="top--card--title">
-				{{ details.program.program_name }}
+				{{ details.program_name }}
 			</h3>
 			<ul class="top--card--list">
 				<li>{{ details.program.type }}</li>

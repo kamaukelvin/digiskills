@@ -15,7 +15,6 @@
 								ticks="always"
 								tick-size="5"
 							></v-slider>
-
 							<v-list-item two-line class="px-0">
 								<v-list-item-content>
 									<v-list-item-title class="home--sidebar--list"
@@ -99,12 +98,12 @@ export default {
 		};
 	},
 	mounted() {
-		if (this.isInstitution) {
+		if (this.isInstitution && this.isProfileNotFilled) {
 			this.showProfileDialog = true;
 		}
 	},
 	computed: {
-		...mapGetters(['isInstitution']),
+		...mapGetters(['isInstitution', 'getUser', 'isProfileNotFilled']),
 	},
 };
 </script>

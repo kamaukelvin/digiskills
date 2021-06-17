@@ -11,14 +11,14 @@ import {
 	VERIFY_SUCCESS,
 } from '../actions/auth';
 // import { USER_REQUEST } from '../actions/user';
-import { register, login, verify } from '../../services/apiSrv';
+import { register, login, verify, logout } from '../../services/apiSrv';
 
 const state = {
 	token: localStorage.getItem('user-token') || '',
 	status: '',
 	hasLoadedOnce: false,
 	loading: false,
-	userData: {},
+	userData: JSON.parse(sessionStorage.getItem('user')) || {},
 	formData: { email: '', password: '', full_name: '', phone: '', user_type: '', terms: '' },
 };
 
@@ -26,10 +26,18 @@ const getters = {
 	isAuthenticated: (state) => !!state.token,
 	isLoading: (state) => state.loading,
 	authStatus: (state) => state.status,
-	isInstitution: (state) => state.userData,
-	// if (state.userData.user_type === 'institution') {
-	// 	return true;
-	// }
+	isInstitution: () => {
+		let user = JSON.parse(sessionStorage.getItem('user'));
+		if (user.user_type === 'institution') {
+			return true;
+		} else return false;
+	},
+	isProfileNotFilled: (state) => {
+		if (state.userData.profile_status === '0') {
+			return true;
+		} else return false;
+	},
+	getUser: (state) => state.userData,
 	getNewUser: (state) => state.formData,
 };
 
@@ -39,6 +47,8 @@ const actions = {
 			commit(REG_REQUEST);
 			register(user)
 				.then((resp) => {
+					localStorage.setItem('user-token', resp.access_token);
+					sessionStorage.setItem('user', JSON.stringify(resp.user));
 					commit(REG_SUCCESS, resp);
 					resolve(resp);
 				})
@@ -55,6 +65,7 @@ const actions = {
 			login(user)
 				.then((resp) => {
 					localStorage.setItem('user-token', resp.access_token);
+					sessionStorage.setItem('user', JSON.stringify(resp.user));
 					commit(AUTH_SUCCESS, resp);
 					resolve(resp);
 				})
@@ -84,6 +95,7 @@ const actions = {
 	[AUTH_LOGOUT]: ({ commit }) => {
 		return new Promise((resolve) => {
 			commit(AUTH_LOGOUT);
+			logout();
 			localStorage.removeItem('user-token');
 			this.$router.push('/login');
 			resolve();
@@ -97,6 +109,7 @@ const mutations = {
 	},
 	[REG_SUCCESS]: (state, resp) => {
 		state.token = resp.token;
+		state.userData = resp.user;
 		state.hasLoadedOnce = true;
 		state.loading = false;
 	},

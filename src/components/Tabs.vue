@@ -14,7 +14,7 @@
 		<Review :visible="showReviewDialog" @close="showReviewDialog = false" />
 		<v-tabs-items v-model="tab" class="bg-transparent">
 			<v-tab-item class="">
-				<h3 class="title my-4">What you need to know</h3>
+				<h3 class="title my-4 pt-md-5">What you need to know</h3>
 				<v-expansion-panels>
 					<v-expansion-panel v-for="item in expansions" :key="item.title">
 						<v-expansion-panel-header class="expansion--title"
@@ -28,10 +28,10 @@
 			</v-tab-item>
 			<v-tab-item class="">
 				<div class="reviews--header">
-					<h3 class="title">{{ this.reviews.length }} alumni testimonials</h3>
+					<h3 class="title pt-md-4">{{ this.reviews.length }} alumni testimonials</h3>
 
 					<div>
-						<a class="submit--link" @click="showReviewDialog = true"
+						<a v-if="!isInstitution" class="submit--link" @click="showReviewDialog = true"
 							>Submit a review <span><i class="flaticon-plus"/></span
 						></a>
 					</div>
@@ -44,6 +44,7 @@
 <script>
 import ReviewCard from './ReviewCard';
 import Review from '../components/dialogs/Review';
+import { mapGetters } from 'vuex';
 export default {
 	name: 'Tabs',
 	components: {
@@ -51,6 +52,7 @@ export default {
 		Review,
 	},
 	props: ['reviews', 'details'],
+
 	data() {
 		console.log('PROGRAM DETAILS HAPA', this.details);
 		return {
@@ -103,6 +105,9 @@ export default {
 				},
 			],
 		};
+	},
+	computed: {
+		...mapGetters(['isInstitution']),
 	},
 };
 </script>

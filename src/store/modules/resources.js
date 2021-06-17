@@ -37,13 +37,14 @@ const actions = {
 				});
 		});
 	},
-	[ADD_RESOURCE_REQUEST]: ({ commit }, resource) => {
+	[ADD_RESOURCE_REQUEST]: ({ commit, dispatch }, resource) => {
 		return new Promise((resolve, reject) => {
 			commit(ADD_RESOURCE_REQUEST);
 			addResource(resource)
 				.then((resp) => {
 					console.log('MY RESOURCE added', resp);
 					commit(ADD_RESOURCE_SUCCESS, resp);
+					dispatch(RESOURCES_REQUEST);
 					Vue.$toast.open({
 						message: resp.message,
 						type: 'success',

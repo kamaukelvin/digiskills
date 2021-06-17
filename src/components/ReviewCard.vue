@@ -1,7 +1,12 @@
 <template>
-	<div v-if="reviews.length === 0"><p class="text-center">No reviews currently for this program</p></div>
+	<div v-if="reviews.length === 0">
+		<div class="card empty--card">
+			<div class="card-body">
+				<p class="text-center">No reviews currently for this program</p>
+			</div>
+		</div>
+	</div>
 	<v-row v-else>
-		<div>{{ reviews.length }}</div>
 		<v-col v-for="(item, i) in reviews" :key="i" cols="12">
 			<v-card>
 				<div class="d-flex flex-no-wrap">
