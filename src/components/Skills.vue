@@ -1,7 +1,15 @@
 <template>
 	<div>
+		<div>{{ this.skills }}</div>
+		<transition-group name="list-complete" tag="ul">
+			<li v-for="program in this.test" :key="program" class="list-complete-item">{{ program }}</li>
+		</transition-group>
+		<button @click="shuffle()">shuffle</button>
+
 		<ul class="skills">
-			<li><h1>Engineering</h1></li>
+			<li>
+				<h1>{{ this.skills[0] }}</h1>
+			</li>
 			<li>
 				<ul>
 					<li><h5>UI/UX Design</h5></li>
@@ -26,7 +34,9 @@
 			<li>
 				<ul>
 					<li><h4>Physics</h4></li>
-					<li><h3>Video Production</h3></li>
+					<li>
+						<h3>{{ this.skills[2] }}</h3>
+					</li>
 					<li><h5>Radiology</h5></li>
 				</ul>
 			</li>
@@ -45,14 +55,35 @@
 				</ul>
 			</li>
 			<li>
-				<h2>Marine Biology</h2>
+				<h2>{{ this.skills[1] }}</h2>
 			</li>
 		</ul>
 	</div>
 </template>
 <script>
+import _ from 'lodash';
 export default {
 	name: 'Skills',
+	props: ['sorted'],
+	data() {
+		return {
+			skills: [],
+		};
+	},
+	methods: {
+		shuffle: function() {
+			this.test = _.shuffle(this.test);
+		},
+	},
+	mounted() {
+		console.log('the sorted ones', this.sorted);
+		this.sorted.map((program) => {
+			let _skills = [...this.skills, program.program_name];
+			this.skills = _skills;
+		});
+
+		console.log('new skils', this.skills);
+	},
 };
 </script>
 <style scoped>
@@ -78,7 +109,7 @@ h5 {
 
 .skills h1 {
 	color: #00b1bc;
-	font-size: 35px;
+	font-size: 29px;
 	font-weight: 700;
 }
 .skills h2 {
@@ -108,5 +139,18 @@ h5 {
 #h5--light {
 	color: #0baa97;
 	font-size: 13px;
+}
+.list-complete-item {
+	transition: all 1s;
+	display: inline-block;
+	margin-right: 10px;
+}
+.list-complete-enter, .list-complete-leave-to
+/* .list-complete-leave-active for <2.1.8 */ {
+	opacity: 0;
+	transform: translateY(30px);
+}
+.list-complete-leave-active {
+	position: absolute;
 }
 </style>

@@ -10,7 +10,7 @@
 				<div class="col-md-10">
 					<span class="float-md-right "><i class="pr-2 flaticon-vector1" />{{ program.availabilty }}</span>
 
-					<h4 class="card--title mb-0">{{ program.name }}</h4>
+					<h4 class="card--title mb-0">{{ program.program_name }}</h4>
 					<h5 class="card--subtitle pb-0 mb-0">{{ program.type }}</h5>
 					<p class="subtitle-1">
 						<span><i class="flaticon-placeholder"/></span> {{ program.location }}

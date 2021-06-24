@@ -49,7 +49,7 @@
 						</v-row>
 						<v-btn
 							type="button"
-							@click="validate"
+							@click.prevent="validate"
 							class="mb-3"
 							:disabled="isLoadingResources"
 							color="primary"
@@ -97,7 +97,6 @@ export default {
 				type: type,
 			});
 		},
-
 		async validate() {
 			this.$refs.form.validate();
 			if (this.valid)

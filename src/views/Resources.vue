@@ -1,5 +1,5 @@
 <template>
-	<div v-if="$store.state.resources.loading">
+	<div v-if="isLoadingResourcesPage">
 		<PageLoader />
 	</div>
 	<div class="bg" v-else>
@@ -10,7 +10,7 @@
 			<div class="resources--header">
 				<BreadCrumbs />
 				<div>
-					<a v-if="isInstitution" href="#" class="resources--link" @click="showResourcesDialog = true"
+					<a v-if="isInstitution" class="resources--link" @click="showResourcesDialog = true"
 						>Add a resource <span><i class="flaticon-plus"/></span
 					></a>
 					<ResourceDialog :visible="showResourcesDialog" @close="showResourcesDialog = false" />
@@ -55,7 +55,7 @@ export default {
 		return { showResourcesDialog: false };
 	},
 	computed: {
-		...mapGetters(['isInstitution', 'isLoadingResources', 'getResources']),
+		...mapGetters(['isInstitution', 'isLoadingResources', 'getResources', 'isLoadingResourcesPage']),
 	},
 	async mounted() {
 		await this.$store.dispatch(RESOURCES_REQUEST);

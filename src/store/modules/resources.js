@@ -11,12 +11,14 @@ import { getResources, addResource } from '../../services/apiSrv';
 
 const state = {
 	loading: false,
+	pageLoading: false,
 	resources: [],
 	error: '',
 };
 
 const getters = {
 	isLoadingResources: (state) => state.loading,
+	isLoadingResourcesPage: (state) => state.pageLoading,
 	getResources: (state) => state.resources,
 };
 
@@ -62,16 +64,16 @@ const actions = {
 
 const mutations = {
 	[RESOURCES_REQUEST]: (state) => {
-		state.loading = true;
+		state.pageLoading = true;
 	},
 	[RESOURCES_SUCCESS]: (state, resp) => {
-		state.loading = false;
+		state.pageLoading = false;
 		state.resources = resp.resource;
 	},
 	[RESOURCES_ERROR]: (state) => {
-		state.loading = false;
+		state.pageLoading = false;
 	},
-	[ADD_RESOURCE_REQUEST]: (state) => {
+	[ADD_RESOURCE_REQUEST]: () => {
 		state.loading = true;
 	},
 	[ADD_RESOURCE_SUCCESS]: (state) => {

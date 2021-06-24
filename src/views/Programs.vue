@@ -48,7 +48,7 @@
 				<div v-else>
 					<ProgramCard v-for="program in getPrograms" :key="program.id" :program="program" />
 					<div class="d-flex justify-content-center align-items-center my-4">
-						<Btn>Show more</Btn>
+						<button @click="viewMore">Show more</button>
 					</div>
 				</div>
 			</section>
@@ -67,7 +67,7 @@ import Search from '../components/Search';
 import FeaturedCard from '../components/FeaturedCard';
 import ProgramCard from '../components/ProgramCard';
 import Footer from '../components/Footer';
-import Btn from '../components/Button';
+// import Btn from '../components/Button';
 import PageLoader from '../components/loaders/PageLoader';
 import { PROGRAMS_REQUEST } from '../store/actions/programs';
 import ProgramDialog from '../components/dialogs/ProgramDialog';
@@ -81,17 +81,29 @@ export default {
 		Banner,
 		Footer,
 		carousel,
-		Btn,
+		// Btn,
 		PageLoader,
 		ProgramDialog,
 	},
 	data() {
-		return { loading: false, showProgramDialog: false };
+		return { loading: false, showProgramDialog: false, visiblePrograms: [], allPrograms: [] };
 	},
 
 	async mounted() {
-		console.log('IS IS INSTITUTION', this.isInstitution);
 		await this.$store.dispatch(PROGRAMS_REQUEST);
+		// this.allPrograms = this.getPrograms;
+
+		// this.visiblePrograms = this.getPrograms;
+	},
+
+	methods: {
+		viewMore() {
+			let _allPrograms = this.allPrograms.splice(0, 5);
+			console.log('spliced', this.allPrograms);
+			console.log('returned', _allPrograms);
+
+			this.visiblePrograms = [...this.visiblePrograms, ..._allPrograms];
+		},
 	},
 	computed: {
 		...mapGetters(['getPrograms', 'isFeatured', 'isInstitution']),

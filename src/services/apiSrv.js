@@ -97,6 +97,28 @@ function verify(otp) {
 		}
 	});
 }
+function getDashboardSummary() {
+	return new Promise(function(resolve, reject) {
+		try {
+			const token = localStorage.getItem('user-token');
+			let config = {
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json',
+					Authorization: `Bearer ${token}`,
+				},
+			};
+
+			let endpoint = 'dashboard';
+
+			let response = get_api(endpoint, config);
+			return resolve(response);
+		} catch (err) {
+			return reject(err);
+		}
+	});
+}
+
 function getPrograms() {
 	return new Promise(function(resolve, reject) {
 		try {
@@ -366,4 +388,5 @@ export {
 	postProfile,
 	addProgram,
 	addResource,
+	getDashboardSummary,
 };

@@ -8,7 +8,7 @@
 					</v-btn>
 				</v-card-title>
 				<v-card-text>
-					<v-form v-model="valid" @submit.prevent="validate" ref="form">
+					<v-form v-model="valid" ref="form">
 						<v-row>
 							<v-col cols="12" md="12">
 								<v-text-field
@@ -37,12 +37,17 @@
 								></v-select>
 							</v-col>
 							<v-col cols="12" md="6">
-								<v-text-field
+								<v-select
 									v-model="form.location"
+									:items="countries"
+									item-text="name"
+									item-value="`${name}, ${code}`"
+									return-
+									object
 									:rules="[(v) => !!v || 'Location is required']"
 									label="Location"
 									required
-								></v-text-field>
+								></v-select>
 							</v-col>
 							<v-col cols="12" md="6">
 								<v-select
@@ -123,7 +128,7 @@
 								></v-textarea>
 							</v-col>
 						</v-row>
-						<v-btn type="submit" class="mb-3" :disabled="isProgramsLoaded" color="primary">
+						<v-btn @click="validate" class="mb-3" :disabled="isProgramsLoaded" color="primary">
 							<span v-if="isProgramsLoaded"
 								>Please wait...<v-progress-circular
 									indeterminate
@@ -144,6 +149,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import { ADD_PROGRAM_REQUEST, ADD_PROGRAM_ERROR } from '../../store/actions/programs';
+import countries from '../../utils/countries';
 
 export default {
 	name: 'CourseDialog',
@@ -158,13 +164,14 @@ export default {
 			availability: ['Part Time', 'Full Time', 'Online'],
 			duration: ['1 - 2 weeks', '2 - 4 weeks'],
 			age: ['Below 18 years', '18 -35 years', '35-75 years', 'Over 75 years'],
-
+			countries,
 			form: {
 				name: '',
 				organization_id: '',
 				type: '',
 				availabilty: '',
 				location: '',
+				countryCode: '',
 				image: null,
 				age_requirements: '',
 				partcipation_guidelines: '',
@@ -179,6 +186,11 @@ export default {
 	mounted() {
 		this.form.organization_id = this.getUser.id;
 	},
+	watch: {
+		form(val) {
+			console.log(val);
+		},
+	},
 	methods: {
 		showError(message, type) {
 			this.$toast.open({
@@ -188,6 +200,7 @@ export default {
 		},
 
 		async validate() {
+			console.log('THIS FORM', this.form);
 			this.$refs.form.validate();
 			if (this.valid)
 				try {
